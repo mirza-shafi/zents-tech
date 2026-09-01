@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 23)
+Last updated: 2026-09-01 (rev 24)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -220,6 +220,14 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Copy matches what the Career page already says (small on purpose, real ownership, no fixed job postings) rather than introducing a new, inconsistent claim.
 - [x] Reused the `--footer-bg` dark tokens again, same as the tech-stack marquee — still no new colors added to the palette.
 - [x] Verified in-browser on desktop and mobile; the "Visit Career" button correctly routes to `/career`. `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 24 (this session) — footer redesign (site-wide)
+
+- [x] Rebuilt `src/components/site-footer.tsx` from a reference screenshot's layout: brand + description + socials on the left, a bordered "What we build" services list in the middle (linking to each `/systems#slug` anchor — reused the real 3 categories, not invented ones), and a large "LET'S TALK" statement on the right linking to `/contact`, followed by a centered tagline strip and a bottom bar with copyright + site/legal links.
+- [x] **Kept the reference's structure, not its brand** — used Zents Tech's own dark-navy/teal tokens (`--footer-bg`/`--footer-fg`/`--footer-accent`) instead of the reference's orange, and didn't add Twitter/Instagram/LinkedIn company icons since those accounts don't exist — kept the same two real channels (WhatsApp, Facebook) the old footer had, just restyled as filled circular badges.
+- [x] Since this component is shared across every page via the root layout, this single change updates the footer site-wide — verified on the homepage and confirmed the same footer renders at the bottom of `/systems` after an anchor click.
+- [x] Verified in-browser: each service link correctly jumps to its `/systems#...` anchor, "Let's Talk" routes to `/contact`, layout stacks cleanly on mobile (375px).
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 

@@ -22,7 +22,7 @@ const bottomLinks = [...nav, ...legalNav];
 export function SiteFooter() {
   return (
     <footer className="bg-[var(--footer-bg)] text-[var(--footer-fg)]">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1fr_1fr_1.2fr] md:gap-12 md:py-16">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[0.85fr_0.85fr_1.3fr] md:gap-12 md:py-16">
         {/* Brand */}
         <div className="md:border-r md:pr-12" style={{ borderColor: "var(--footer-border)" }}>
           <Logo variant="dark" />
@@ -78,8 +78,8 @@ export function SiteFooter() {
 
         {/* Let's talk */}
         <div className="flex flex-col justify-center">
-          <Link href="/contact" className="group inline-block w-fit">
-            <span className="block text-balance font-display text-5xl leading-[0.95] font-extrabold uppercase tracking-tight text-[var(--footer-fg)] transition-colors group-hover:text-[var(--footer-accent)] sm:text-6xl">
+          <Link href="/contact" className="group block">
+            <span className="block font-display text-7xl leading-[0.82] font-extrabold uppercase tracking-tighter text-[var(--footer-fg)] transition-colors group-hover:text-[var(--footer-accent)] sm:text-8xl lg:text-9xl">
               Let&rsquo;s
               <br />
               Talk
@@ -87,7 +87,7 @@ export function SiteFooter() {
           </Link>
           <a
             href={`mailto:${contact.email}`}
-            className="mt-5 text-sm text-[var(--footer-muted)] transition-colors hover:text-[var(--footer-fg)]"
+            className="mt-6 text-sm text-[var(--footer-muted)] transition-colors hover:text-[var(--footer-fg)]"
           >
             {contact.email}
           </a>
