@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 19)
+Last updated: 2026-09-01 (rev 20)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -185,6 +185,15 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Left Privacy/Terms headings untouched — legal pages intentionally stay plain, not part of the marketing type scale.
 - [x] Verified in-browser on desktop and mobile (375px) — headlines wrap cleanly with no overflow, `text-balance` still holds; confirmed via screenshots on Home, About, and Systems.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean across all 18 routes.
+
+## Since rev 20 (this session) — dark tech-stack marquee section on the homepage
+
+- [x] Added a new dark-navy homepage section, referenced from a screenshot of a similar section on another agency's site: "Yes! Here's the stack we actually build with," with a two-row, opposite-direction scrolling marquee of real tools underneath. Sits between the Systems overview and "How we work" sections.
+- [x] **Reused the existing `--footer-bg`/`--footer-fg`/`--footer-muted` tokens** for the dark background instead of inventing a new near-duplicate navy — same color already used for the dark footer, so this doesn't add a fourth color to the palette.
+- [x] **The tool list is deliberately not a copy of the reference site's list** — it names only technologies already established elsewhere in this site's own copy (n8n, Make, RAG pipelines, AI agents, WhatsApp API, Meta Graph API, React/Next.js, per the About and Career pages) plus their obvious, standard companions (Node.js, TypeScript, PostgreSQL, Google Sheets, CRMs, REST APIs, webhooks). Copying the reference site's actual list (Java, WordPress, iOS, Ruby on Rails, Angular) would have claimed expertise this site has never claimed anywhere else — that's exactly the kind of unearned breadth-claim the site's own copy already argues against ("not 'cutting-edge AI technology'").
+- [x] Built as a plain server component (`src/components/tech-marquee.tsx`) with a pure-CSS marquee animation (`animate-marquee-left` / `-right` in `globals.css`) — no client-side JS, no `useReducedMotion` hook needed; reduced motion is handled by a `prefers-reduced-motion` media query that freezes the animation, the same pattern already used for the hero's background pan.
+- [x] Verified in-browser: both rows scroll continuously in opposite directions, edges fade via a mask-image gradient, renders correctly on mobile (375px) too.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
