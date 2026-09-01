@@ -57,27 +57,16 @@ const capabilityCells: ({ kind: "text"; cap: (typeof capabilities)[number] } | {
 export default function Home() {
   return (
     <>
-      {/* Hero — banner-height background photo, not full viewport */}
-      <section className="relative overflow-hidden border-b border-border">
-        <Image
-          src="/images/hero-workspace.jpg"
-          alt=""
-          fill
-          priority
-          className="hero-bg-pan object-cover object-[70%_50%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-
-        <div className="container-page relative grid gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-20">
+      {/* Hero — light collage of the real founders, no fabricated stats */}
+      <section className="relative overflow-hidden border-b border-border bg-hero-glow">
+        <div className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.5] [mask-image:radial-gradient(ellipse_75%_75%_at_50%_35%,black,transparent)]" />
+        <div className="container-page relative grid items-center gap-12 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <Reveal>
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
-              AI Systems &amp; Business Automation
-            </span>
-            <h1 className="mt-4 text-balance font-display text-5xl font-extrabold leading-[1.05] tracking-tighter text-white md:text-6xl">
+            <span className="eyebrow">AI Systems &amp; Business Automation</span>
+            <h1 className="mt-4 text-balance font-display text-5xl font-extrabold leading-[1.05] tracking-tighter md:text-6xl">
               Most of your team&rsquo;s day is spent on work a system could do instead.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               We build the AI agents, automations, and internal software that
               take that work off their plate — wired into the tools you
               already use, and monitored so they keep working after we ship.
@@ -87,38 +76,39 @@ export default function Home() {
                 Get an Automation &amp; AI Readiness Audit
                 <ArrowRight className="size-4" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                nativeButton={false}
-                render={<Link href="/process" />}
-                className="border-white/30 bg-white/5 text-white backdrop-blur-sm hover:bg-white/15 hover:text-white"
-              >
+              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/process" />}>
                 See how we work
               </Button>
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="self-start">
-            <div className="relative overflow-hidden rounded-xl border border-white/15 bg-black/35 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
-              <div className="space-y-4 p-6">
-                <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
-                  Where the hours actually go
-                </div>
-                {[
-                  "Answering the same support question for the hundredth time",
-                  "Copying a lead from WhatsApp into a spreadsheet, manually",
-                  "Chasing three tools to find one customer's order status",
-                  "Re-typing the same quote or invoice by hand",
-                ].map((line) => (
-                  <div key={line} className="flex items-start gap-3">
-                    <div className="mt-2 size-1.5 shrink-0 rounded-full bg-red-400" />
-                    <p className="text-sm leading-relaxed text-white/90">{line}</p>
-                  </div>
-                ))}
-                <p className="border-t border-white/15 pt-4 text-sm text-white/70">
-                  Every one of these is a system, not a hire.
-                </p>
+          <Reveal delay={0.15}>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[340px]">
+              <div className="absolute inset-x-0 bottom-0 aspect-[4/3] w-[82%] overflow-hidden rounded-2xl shadow-[0_20px_50px_-15px_rgba(18,22,28,0.35)]">
+                <Image
+                  src="/images/hero-workspace.jpg"
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 280px, 60vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute top-0 right-0 aspect-square w-[52%] overflow-hidden rounded-2xl border-4 border-background shadow-[0_20px_50px_-15px_rgba(18,22,28,0.35)]">
+                <Image
+                  src="/images/code-screen.jpg"
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 180px, 40vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute top-[42%] left-0 -translate-x-[15%] rounded-xl border border-border bg-card px-4 py-3 text-center shadow-[0_12px_30px_-10px_rgba(18,22,28,0.25)]">
+                <p className="font-display text-lg font-extrabold text-primary">Founder-led</p>
+                <p className="text-xs text-muted-foreground">2 founders, one focus</p>
+              </div>
+              <div className="absolute right-[6%] -bottom-5 rounded-xl border border-border bg-card px-4 py-3 text-center shadow-[0_12px_30px_-10px_rgba(18,22,28,0.25)]">
+                <p className="font-display text-lg font-extrabold text-primary">Dhaka, BD</p>
+                <p className="text-xs text-muted-foreground">Built for BD &amp; global clients</p>
               </div>
             </div>
           </Reveal>

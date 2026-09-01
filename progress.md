@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 37)
+Last updated: 2026-09-01 (rev 39)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -339,6 +339,22 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Sourced 2 new free-to-use, no-people Unsplash photos for the posts that needed them (`blog-security.jpg`, `blog-planning.jpg` — verified "Download free," not Unsplash+, before using either), and reused 5 already-vetted photos already in the project for the rest — no new fabricated "team" or "client" imagery.
 - [x] Added `/blog` and all 7 post URLs to `sitemap.ts`.
 - [x] Verified in-browser: listing grid, an individual post (headings, bullet list, images, cross-links to other posts), footer/nav Blog links, and mobile rendering. `tsc` / `npm run lint` / `npm run build` all clean — all 7 posts show up as statically pre-rendered routes.
+
+## Since rev 38 (this session) — hero photo is a banner now, not full-screen
+
+- [x] Removed the `min-h-[620px] md:min-h-[680px]` forcing the homepage hero to near-viewport height, and reduced its padding (`py-20 md:py-28 → py-16 md:py-20`) to match the height every other page's hero already uses. The section now sizes to its actual content — heading, text, buttons — instead of an artificial minimum, so the photo reads as a banner at the top of the page rather than a full-screen cover.
+- [x] Verified in-browser on desktop (1280px) and mobile (375px) — the "Founding note" section is now visible right below the fold on a normal laptop screen instead of requiring a scroll past a near-full-viewport hero.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 39 (this session) — hero redesigned to match a reference site's structure, honestly
+
+- [x] Rebuilt the homepage hero from a dark full-bleed photo into a light layout referenced from a screenshot of another company's homepage: eyebrow + big headline + CTAs on the left, a photo collage with floating stat-style badges on the right, dot-grid + soft glow background texture.
+- [x] **Flagged and resolved a fabrication risk before building it**: the reference's actual content was a fabricated-for-us set of numbers ("20+ Years of Experience," "88%+ Employee Retention") and a stock photo of 5 people implied as "the team" — none of that is true for a two-person, months-old studio. Asked how to adapt it rather than copying the numbers; you picked real founder photos with honest badge text instead of invented stats.
+- [x] The collage uses the two real founder photos already in the project (`shafi-founder.jpg`, `arnob-cofounder.png` — same files already used honestly on the About page) with descriptive alt text naming them, not decorative `alt=""`. The two floating badges say "Founder-led — 2 founders, one focus" and "Dhaka, BD — Built for BD & global clients" — both true, nothing invented.
+- [x] Reused the existing `bg-hero-glow` / `bg-dot-grid` utilities (already used on the Contact page hero) for the background texture instead of adding new ones.
+- [x] Removed the old "Where the hours actually go" dark card from the hero, since the photo collage now occupies that column — that content wasn't load-bearing to the pitch.
+- [x] Verified in-browser on desktop (1280px) and mobile (375px) — both founder photos and both badges render fully, nothing clipped or overlapping badly, at both sizes.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
