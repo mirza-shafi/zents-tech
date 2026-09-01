@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Reveal } from "@/components/reveal";
+import { WorkflowDiagram } from "@/components/workflow-diagram";
 import { serviceCategories, lifecycle } from "@/lib/site-data";
 
 export default function Home() {
@@ -10,7 +12,7 @@ export default function Home() {
       {/* Hero */}
       <section className="border-b border-border">
         <div className="container-page grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
-          <div>
+          <Reveal>
             <span className="eyebrow">AI Systems &amp; Business Automation</span>
             <h1 className="mt-4 text-balance font-display text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
               Most of your team&rsquo;s day is spent on work a system could do instead.
@@ -29,7 +31,7 @@ export default function Home() {
                 See how we work
               </Button>
             </div>
-          </div>
+          </Reveal>
 
           <Card className="self-start bg-card/60">
             <CardContent className="space-y-4">
@@ -66,10 +68,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Signature visual: manual task -> AI/automation -> your tools -> outcome */}
+      <section className="border-b border-border">
+        <div className="container-page py-20">
+          <Reveal className="mx-auto max-w-xl text-center">
+            <span className="eyebrow">How the work actually changes</span>
+            <h2 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              Same task. Different shape.
+            </h2>
+          </Reveal>
+          <div className="mx-auto mt-16 max-w-3xl">
+            <WorkflowDiagram />
+          </div>
+        </div>
+      </section>
+
       {/* Systems overview */}
       <section id="systems" className="border-b border-border">
         <div className="container-page py-20">
-          <div className="max-w-2xl">
+          <Reveal className="max-w-2xl">
             <span className="eyebrow">What we build</span>
             <h2 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               Three systems, not eight services.
@@ -79,7 +96,7 @@ export default function Home() {
               Software Engineering is what holds them together once a
               workflow outgrows an off-the-shelf tool.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {serviceCategories.map((cat) => (
@@ -115,10 +132,12 @@ export default function Home() {
       {/* How we work */}
       <section className="border-b border-border bg-muted/30">
         <div className="container-page py-20">
-          <span className="eyebrow">How we work</span>
-          <h2 className="mt-3 max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
-            From a diagnostic to a system you rely on.
-          </h2>
+          <Reveal>
+            <span className="eyebrow">How we work</span>
+            <h2 className="mt-3 max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              From a diagnostic to a system you rely on.
+            </h2>
+          </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {lifecycle.map((stage, i) => (
               <div key={stage.step} className="flex gap-4">
@@ -141,7 +160,7 @@ export default function Home() {
       <section className="border-b border-border">
         <div className="container-page py-20">
           <div className="grid gap-10 md:grid-cols-2">
-            <div>
+            <Reveal>
               <span className="eyebrow">Why Zents Tech</span>
               <h2 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight">
                 Engineering-led, not tool-reseller-led.
@@ -153,7 +172,7 @@ export default function Home() {
                 because automations break quietly when a third-party API
                 changes, and someone has to notice before your customer does.
               </p>
-            </div>
+            </Reveal>
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 ["Dual-market delivery", "Priced and built for both Bangladeshi and international clients."],

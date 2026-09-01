@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Reveal } from "@/components/reveal";
 import { serviceCategories, productizedServices } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -16,15 +17,17 @@ export default function SystemsPage() {
     <>
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <span className="eyebrow">Systems</span>
-          <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-            Three systems. One diagnostic to get into any of them.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            We don&rsquo;t sell a menu of eight unrelated services. We build
-            AI Systems and Business Automation as the core of the business,
-            with Software Engineering underneath to hold them together.
-          </p>
+          <Reveal>
+            <span className="eyebrow">Systems</span>
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              Three systems. One diagnostic to get into any of them.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+              We don&rsquo;t sell a menu of eight unrelated services. We build
+              AI Systems and Business Automation as the core of the business,
+              with Software Engineering underneath to hold them together.
+            </p>
+          </Reveal>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/reveal";
 import { lifecycle } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -43,15 +44,17 @@ export default function ProcessPage() {
     <>
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <span className="eyebrow">Process</span>
-          <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-            The path from a diagnostic to a system you don&rsquo;t think about.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Most clients don&rsquo;t start with a six-figure automation
-            project. They start with a question — and the path from there is
-            deliberately gradual.
-          </p>
+          <Reveal>
+            <span className="eyebrow">Process</span>
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              The path from a diagnostic to a system you don&rsquo;t think about.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+              Most clients don&rsquo;t start with a six-figure automation
+              project. They start with a question — and the path from there is
+              deliberately gradual.
+            </p>
+          </Reveal>
         </div>
       </section>
 

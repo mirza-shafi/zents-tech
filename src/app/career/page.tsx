@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/reveal";
 import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -81,16 +82,18 @@ export default function CareerPage() {
     <>
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <span className="eyebrow">Career</span>
-          <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-            Build the systems, not just ship the work.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Zents Tech is small on purpose right now, which means an early
-            hire gets real ownership instead of a seat in a big org chart. No
-            fixed job postings below — this page explains who we want to
-            hear from and how to actually reach us.
-          </p>
+          <Reveal>
+            <span className="eyebrow">Career</span>
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              Build the systems, not just ship the work.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Zents Tech is small on purpose right now, which means an early
+              hire gets real ownership instead of a seat in a big org chart. No
+              fixed job postings below — this page explains who we want to
+              hear from and how to actually reach us.
+            </p>
+          </Reveal>
         </div>
       </section>
 

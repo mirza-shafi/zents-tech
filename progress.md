@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 4)
+Last updated: 2026-09-01 (rev 6)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -49,6 +49,22 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primiti
   - Accent kept in the same teal family as before (for continuity with buttons/links already in copy) but darkened to `#0F766E` for proper contrast on a light background
 - [x] Removed the hardcoded `dark` class from `<html>` in `src/app/layout.tsx` — the site has no light/dark toggle, so this is now just a single, deliberate light theme (matches how it was already built for dark, just flipped)
 - [x] Verified in-browser across Home, Systems, and Contact: hero, cards, pricing grid, form inputs, and footer all read cleanly on the new palette; no leftover hardcoded dark-mode colors found anywhere in the codebase (confirmed by search — every component already used the token system, so this was a CSS-only change)
+
+## Since rev 4 (this session)
+
+- [x] **Career page added** (`/career`), added to primary nav between Process and About. Studied the structure of Therap BD, Field Nation, and Brain Station 23's career pages (at-a-glance intro, why-work-here, perks, culture/values, open-roles CTA, hiring process) and adapted the pattern honestly for a brand-new, founder-led studio — confirmed with you first that there are **no fixed job openings yet**, so the page runs as a general talent-pipeline: why join early, what to realistically expect (no fabricated perks — no gym/transport/unlimited-PTO claims like the bigger reference companies have, since those aren't true here), the kind of roles we'd want to hear from (Automation & Backend, AI-minded, Full-Stack), a 3-step hiring process, and a direct "email your resume" CTA (`mailto:` with a pre-filled subject) rather than a fake application portal.
+- [x] Verified in-browser end to end, including that both `mailto:` links (inline text and the CTA button) resolve correctly.
+
+## Since rev 5 (this session) — Motion animation
+
+- [x] Verified current Motion for React API directly from motion.dev docs before writing any code (package is `motion`, import path is `motion/react`, not the old `framer-motion` package) — confirmed there are actually **two different products both called "Motion"**: motion.dev (the animation library, used below) and a separate paid AI video-generation tool exposed to this session via MCP (`create_video` etc.) — see the video note below.
+- [x] Installed `motion`, wired up via `LazyMotion` + `domAnimation` (`src/components/motion-provider.tsx`, `src/lib/motion-features.ts`) in `strict` mode — Motion's own documented pattern for keeping the animation runtime out of the initial bundle (~4.6kb to start rather than the full library), and `strict` mode means any accidental non-lazy `motion.*` usage would fail loudly instead of silently bloating the bundle.
+- [x] `src/components/reveal.tsx` — a small reusable fade-and-rise-on-scroll wrapper, applied moderately (hero + one heading per section) across Home, Systems, Process, Career, and About — **not** applied to every element, per the "small number of signature animations, not animating everything" brief. Fully inert (renders a plain static tag, no motion at all) when `prefers-reduced-motion` is set, via Motion's `useReducedMotion` hook.
+- [x] **One signature visual**: `src/components/workflow-diagram.tsx` on the homepage — "A manual task → An AI agent or automation → Your existing tools → A better outcome," implemented as SVG nodes/icons (lucide-react, no robot/brain imagery) with an animated connecting line (`pathLength` draw-in on scroll, plus a slow, subtle looping pulse afterward). This is the one deliberately more elaborate piece — chose SVG + Motion over Lottie/video/WebGL since it's simple geometry and text, and SVG+Motion is the lightest implementation that does the job. Responsive: swaps to a vertical layout below `md`. Verified via DOM inspection that the path actually animates from `pathLength: 0` to `1` and the pulse loops correctly.
+- [x] `npm run build` / `tsc --noEmit` / `npm run lint` all still pass clean; verified in-browser with a fresh tab (no console errors) on Home and Systems.
+
+### On the video-generation half of this brief
+The brief also asked about generating motion-design/video assets. That capability is real and available to this session, but it's a **paid, per-video service — currently at 0 credits**, with a $5/200-credit minimum top-up (roughly 1-2 videos) or a $29+/mo plan. I did not spend anything without checking with you first. If you want a generated explainer (e.g. the "AI Agent Workflow" or "Lead → CRM → Sales" concepts from the brief) for the homepage or Systems page, say so and confirm the spend, and I'll generate it — but I'd suggest holding off until there's a real workflow/case study to actually depict, rather than an abstract stock-feeling motion graphic.
 
 ## Not done yet — what's left
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "About",
@@ -34,16 +35,18 @@ export default function AboutPage() {
     <>
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <span className="eyebrow">About</span>
-          <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-            A small studio, on purpose.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Zents Tech is a founder-led technology studio based in Dhaka,
-            building AI systems and automation for a deliberately small
-            number of clients at a time — Bangladeshi SMEs and international
-            businesses, side by side.
-          </p>
+          <Reveal>
+            <span className="eyebrow">About</span>
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              A small studio, on purpose.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Zents Tech is a founder-led technology studio based in Dhaka,
+              building AI systems and automation for a deliberately small
+              number of clients at a time — Bangladeshi SMEs and international
+              businesses, side by side.
+            </p>
+          </Reveal>
         </div>
       </section>
 
