@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { MotionProvider } from "@/components/motion-provider";
+import { siteUrl } from "@/lib/site-data";
 
 const display = Archivo({
   variable: "--font-display",
@@ -24,7 +25,6 @@ const mono = IBM_Plex_Mono({
   weight: ["500", "600"],
 });
 
-const siteUrl = "https://zentstech.com";
 const title = "Zents Tech — AI Systems & Business Automation";
 const description =
   "Zents Tech builds the AI agents, automations, and internal software that take manual work off your team's plate — for businesses in Bangladesh and abroad.";

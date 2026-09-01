@@ -91,6 +91,18 @@ export function ContactForm() {
         <Textarea id="message" name="message" rows={5} required />
       </div>
 
+      {/* Honeypot: hidden from real visitors, catches basic bots that auto-fill every field. */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {status === "error" && (
         <p className="text-sm text-destructive">{errorMessage}</p>
       )}

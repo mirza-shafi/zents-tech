@@ -5,6 +5,7 @@ type ContactPayload = {
   email?: string;
   company?: string;
   message?: string;
+  website?: string; // honeypot — real visitors never see or fill this field
 };
 
 // TODO: wire this up to a real delivery mechanism (e.g. Resend, SES, or a
@@ -19,7 +20,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { name, email, company, message } = body;
+  const { name, email, company, message, website } = body;
+
+  if (website?.trim()) {
+    // Honeypot tripped — a bot filled the hidden field. Report success so
+    // it doesn't learn anything, but skip logging it as a real inquiry.
+    return NextResponse.json({ ok: true });
+  }
 
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
     return NextResponse.json(
