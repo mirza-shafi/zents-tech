@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 11)
+Last updated: 2026-09-01 (rev 12)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -123,6 +123,13 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Arnob's bio is intentionally minimal** ("Co-founder at Zents Tech.") — you gave me a name, role, and LinkedIn, not a bio, so I didn't invent one. Send details whenever you want it filled in.
 - [x] Updated the About hero paragraph to name both founders directly instead of the generic "founder-led" phrasing used before.
 - [x] Verified in-browser: photos render, all LinkedIn/portfolio links point to the exact URLs you gave; `tsc`/`build`/`lint` clean.
+
+## Since rev 11 (this session) — corrected founder details
+
+- [x] Corrected co-founder's real name in the Founders section: **Shoeb Mahfuz** (not "Arnob" — that was a placeholder guess from the LinkedIn handle before you gave the actual name), with his stated role, **Network & Cybersecurity Enthusiast**, shown under his title.
+- [x] Founder's card now shows the full formal name, **Mirza Md. Shafi Uddin**, with "AI & Software Engineer" as a matching role line (the hero paragraph above still uses "Shafi" for readable prose — cards carry the formal names, running text uses first names).
+- [x] Shoeb's bio is no longer just "Co-founder at Zents Tech" — it now ties his stated security background to something concrete Zents Tech actually does (checking that what ships is resilient/secure, not just functional), without inventing credentials you didn't give me.
+- [x] Verified in-browser, `tsc`/`build`/`lint` clean.
 
 ## Not done yet — what's left
 

@@ -27,9 +27,9 @@ const founders = [
   {
     name: "Shoeb Mahfuz",
     title: "Co-founder",
-    role: "Network & Cybersecurity Enthusiast",
+    role: "Network & Cybersecurity Engineer",
     photo: "/images/arnob-cofounder.png",
-    bio: "Brings the network and security lens to Zents Tech — the person asking whether an automation is resilient and locked down, not just working, before it ships to a client.",
+    bio: "Handles network and security engineering at Zents Tech — the person making sure what ships is locked down and resilient, not just functional.",
     linkedin: "https://www.linkedin.com/in/shoebmahfuz/",
   },
 ];
