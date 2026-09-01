@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 12)
+Last updated: 2026-09-01 (rev 13)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -130,6 +130,16 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Founder's card now shows the full formal name, **Mirza Md. Shafi Uddin**, with "AI & Software Engineer" as a matching role line (the hero paragraph above still uses "Shafi" for readable prose — cards carry the formal names, running text uses first names).
 - [x] Shoeb's bio is no longer just "Co-founder at Zents Tech" — it now ties his stated security background to something concrete Zents Tech actually does (checking that what ships is resilient/secure, not just functional), without inventing credentials you didn't give me.
 - [x] Verified in-browser, `tsc`/`build`/`lint` clean.
+
+## Since rev 12 (this session) — Contact page overhaul + role fix
+
+- [x] Fixed Shoeb Mahfuz's title: **Network & Cybersecurity Engineer** (was "Enthusiast" from the previous rev, before you corrected it) — bio text adjusted to match the more established professional framing.
+- [x] **Contact page fully rebuilt.** It was the most basic page left on the site (no animation, plain stacked list, no visual system applied). Now:
+  - Same hero-glow + dot-grid background treatment as the homepage
+  - The email/WhatsApp/location list became 4 color-coded contact-method cards (added **Facebook**, which was missing from this page even though it's in the footer), each a real clickable link
+  - A "What happens next" 3-step section (reach out → personal reply within one business day → scoped Audit) so a first-time visitor knows what to expect before filling the form
+  - A **new FAQ accordion** (5 questions) covering the things people actually hesitate on before writing in — international clients, uncertainty about what to ask for, pricing (points to the real Systems page ranges, no invented numbers), NDAs — built with shadcn's Accordion component, already installed but unused until now
+- [x] Verified in-browser: contact cards link correctly, FAQ accordion opens/closes correctly, no console errors; `tsc`/`build`/`lint` clean.
 
 ## Not done yet — what's left
 
