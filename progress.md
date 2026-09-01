@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 9)
+Last updated: 2026-09-01 (rev 11)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -104,6 +104,25 @@ Still true from before: no AI image *generator* is available in this session, an
 - [x] Verified in-browser across Home, About, Career — fresh tabs, zero console errors; `tsc`/`build`/`lint` all clean.
 
 Same honesty note as before: all photos are anonymous/generic (no identifiable faces used as if they were specific real employees), sourced from Unsplash under its free commercial-use license. If real photos come in later, swap-in is straightforward — one `<Image src>` per spot.
+
+## Since rev 9 (this session) — blurred nav + hover mega-menus
+
+- [x] **Header is now a frosted-glass sticky bar** — semi-transparent background with `backdrop-blur-md`, so page content blurs through underneath it (visible clearly over the new hero photo).
+- [x] **"Systems" is now a hover dropdown** listing the 3 categories (with their color-coded icon badges), each linking straight to its own card on the Systems page (`/systems#ai-systems`, `#business-automation`, `#software-engineering`), plus a "see full architecture & pricing" link at the bottom. Built with shadcn/Base UI's `NavigationMenu` (already installed from the first pass, just unused until now).
+- [x] **"Process" got the same treatment**, hover-listing all 6 lifecycle steps with a one-line description each, linking to their own anchor on the Process page, same "see the full process" link at the bottom.
+- [x] Added scroll-margin anchors (`id`) to the Systems page's 3 category cards and the Process page's 6 timeline steps so these deep-links land in the right spot without hiding under the sticky header.
+- [x] Mobile menu unaffected — still a flat link list (dropdowns don't make sense on mobile, so it intentionally didn't get the mega-menu treatment).
+- [x] Verified in-browser: hovering shows the right content, clicking a sub-item navigates and scrolls to the exact card, dropdown closes correctly after navigating away. `tsc`/`build`/`lint` all clean.
+
+## Since rev 10 (this session) — real founders, finally
+
+You sent real photos and real links for both founders, which changes the honesty calculus from earlier revs — this is now genuine, verifiable content, not something I need to work around.
+
+- [x] **Founders section added to the About page** (`/about`) with real photos, names, titles, LinkedIn links, and (for Shafi) a portfolio link — `shafi-founder.jpg` and `arnob-cofounder.png` in `public/images/` (renamed from the original filenames to remove a space and match the project's kebab-case convention).
+- [x] **Shafi's bio is grounded in his actual portfolio** (fetched mirzashafi.com directly rather than guessing): AI/software engineer, RAG pipelines, autonomous AI agents, n8n automation, FastAPI/Node.js — i.e., this is literally the same work Zents Tech now does as a company. Cited from his own site, not invented.
+- [x] **Arnob's bio is intentionally minimal** ("Co-founder at Zents Tech.") — you gave me a name, role, and LinkedIn, not a bio, so I didn't invent one. Send details whenever you want it filled in.
+- [x] Updated the About hero paragraph to name both founders directly instead of the generic "founder-led" phrasing used before.
+- [x] Verified in-browser: photos render, all LinkedIn/portfolio links point to the exact URLs you gave; `tsc`/`build`/`lint` clean.
 
 ## Not done yet — what's left
 
