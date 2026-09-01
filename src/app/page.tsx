@@ -1,17 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, Globe, Target, Activity, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/reveal";
 import { WorkflowDiagram } from "@/components/workflow-diagram";
-import { serviceCategories, lifecycle } from "@/lib/site-data";
+import { serviceCategories, lifecycle, pillarColorClasses } from "@/lib/site-data";
+
+const categoryIcons = { Bot, Workflow, Code2 };
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-border">
-        <div className="container-page grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
+      <section className="relative overflow-hidden border-b border-border bg-hero-glow">
+        <div className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.55] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
+        <div className="container-page relative grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
           <Reveal>
             <span className="eyebrow">AI Systems &amp; Business Automation</span>
             <h1 className="mt-4 text-balance font-display text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
@@ -99,25 +102,34 @@ export default function Home() {
           </Reveal>
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {serviceCategories.map((cat) => (
-              <Card key={cat.name} className="flex flex-col">
-                <CardContent className="flex flex-1 flex-col">
-                  <span className="eyebrow">{cat.tag}</span>
-                  <h3 className="mt-2 font-display text-xl font-bold">{cat.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {cat.description}
-                  </p>
-                  <ul className="mt-5 flex flex-1 flex-col gap-2.5">
-                    {cat.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+            {serviceCategories.map((cat, i) => {
+              const Icon = categoryIcons[cat.icon];
+              const colors = pillarColorClasses[cat.color];
+              return (
+                <Reveal key={cat.name} delay={i * 0.08}>
+                  <Card className="flex h-full flex-col">
+                    <CardContent className="flex flex-1 flex-col">
+                      <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
+                        <Icon className="size-5" strokeWidth={1.75} />
+                      </div>
+                      <span className="eyebrow mt-4">{cat.tag}</span>
+                      <h3 className="mt-2 font-display text-xl font-bold">{cat.name}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {cat.description}
+                      </p>
+                      <ul className="mt-5 flex flex-1 flex-col gap-2.5">
+                        {cat.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-sm">
+                            <CheckCircle2 className={`mt-0.5 size-4 shrink-0 ${colors.icon}`} />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </Reveal>
+              );
+            })}
           </div>
 
           <div className="mt-8">
@@ -175,13 +187,16 @@ export default function Home() {
             </Reveal>
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                ["Dual-market delivery", "Priced and built for both Bangladeshi and international clients."],
-                ["Scoped, not open-ended", "Every engagement starts fixed-fee and time-boxed."],
-                ["Monitored after launch", "A retainer, not a handoff, on everything we build."],
-                ["Two focuses, not eight", "AI systems and automation — software when it's needed."],
-              ].map(([title, desc]) => (
+                { icon: Globe, cls: "bg-accent text-primary", title: "Dual-market delivery", desc: "Priced and built for both Bangladeshi and international clients." },
+                { icon: Target, cls: "bg-violet-tint text-violet", title: "Scoped, not open-ended", desc: "Every engagement starts fixed-fee and time-boxed." },
+                { icon: Activity, cls: "bg-brass-tint text-brass", title: "Monitored after launch", desc: "A retainer, not a handoff, on everything we build." },
+                { icon: Layers, cls: "bg-good-tint text-good", title: "Two focuses, not eight", desc: "AI systems and automation — software when it's needed." },
+              ].map(({ icon: Icon, cls, title, desc }) => (
                 <div key={title} className="rounded-lg border border-border p-4">
-                  <h4 className="font-display text-sm font-bold">{title}</h4>
+                  <div className={`flex size-8 items-center justify-center rounded-full ${cls}`}>
+                    <Icon className="size-4" strokeWidth={1.75} />
+                  </div>
+                  <h4 className="mt-3 font-display text-sm font-bold">{title}</h4>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{desc}</p>
                 </div>
               ))}

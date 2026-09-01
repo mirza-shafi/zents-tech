@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 6)
+Last updated: 2026-09-01 (rev 7)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -65,6 +65,22 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primiti
 
 ### On the video-generation half of this brief
 The brief also asked about generating motion-design/video assets. That capability is real and available to this session, but it's a **paid, per-video service — currently at 0 credits**, with a $5/200-credit minimum top-up (roughly 1-2 videos) or a $29+/mo plan. I did not spend anything without checking with you first. If you want a generated explainer (e.g. the "AI Agent Workflow" or "Lead → CRM → Sales" concepts from the brief) for the homepage or Systems page, say so and confirm the spend, and I'll generate it — but I'd suggest holding off until there's a real workflow/case study to actually depict, rather than an abstract stock-feeling motion graphic.
+
+## Since rev 6 (this session) — richer color system + visual polish
+
+You said the site had gotten "too basic" and asked for it to feel more like Field Nation / Brain Station 23 / Therap BD, plus images, video, and a fuller color combination. Here's what actually shipped vs. what's blocked and why:
+
+- [x] **Expanded color system** (`src/app/globals.css`): the site was effectively one accent color (teal) on neutrals. Added a real 4-color system tied to actual site structure, not decoration — teal (AI Systems), violet (Business Automation), brass/amber (Software Engineering), green (positive outcomes) — plus tint variants for badge backgrounds.
+- [x] Applied it everywhere the 3 service categories appear: homepage category cards, Systems page detail cards, and the homepage checkmark lists all now carry their category's color, which also makes the 3-pillar structure easier to scan at a glance.
+- [x] The homepage's 4-item "Why us" grid and the workflow diagram nodes got matching colored icon badges instead of flat gray boxes.
+- [x] Hero section got a background treatment (`bg-hero-glow` + `bg-dot-grid` utility classes) — a subtle radial color glow plus a masked dot-grid texture — the kind of visual depth those reference sites have in their hero without it being a photo.
+- [x] The signature workflow diagram's connecting line is now a gradient sweeping through all 4 pillar colors instead of flat teal.
+- [x] Verified in-browser end to end; `tsc` / `lint` clean throughout.
+
+### Images and video — status and why they're not both just "done"
+- **No AI image-generation tool is available in this session.** I checked. So "create images" can't mean literal photo generation from me — I built the visual richness above using color, layout, and original SVG/vector work instead (the workflow diagram, colored icon badges, hero background), which is the honest equivalent of what a designer would do without a photo shoot.
+- **Real photos** (team, office, working) — I don't have any, and I'm not going to fabricate stock-style "team at work" images and present them as Zents Tech's actual people/office, since that directly contradicts the no-fake-claims approach the whole site (About, Career, homepage) is already built on. If you have real photos, send them and I'll place them properly (hero, About, Career).
+- **Video** — there IS a real video-generation tool available to this session, but it's paid and currently at **0 credits** (~$5 minimum for 200 credits, roughly 1-2 videos). I flagged this before and still haven't spent anything without your explicit go-ahead. Asking again directly: want me to generate one (confirm the spend), or hold off until there's real footage/work to show?
 
 ## Not done yet — what's left
 

@@ -40,7 +40,12 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-brass: var(--brass);
+  --color-brass-tint: var(--brass-tint);
   --color-good: var(--good);
+  --color-good-tint: var(--good-tint);
+  --color-violet: var(--violet);
+  --color-violet-tint: var(--violet-tint);
+  --color-primary-tint: var(--accent);
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: calc(var(--radius) * 0.75);
   --radius-lg: var(--radius);
@@ -73,8 +78,12 @@
   --border: #e2e7ef;
   --input: #e2e7ef;
   --ring: #0f766e;
-  --brass: #a9772f;
-  --good: #1f9d55;
+  --brass: #b1650f;
+  --brass-tint: #fbeee0;
+  --good: #15803d;
+  --good-tint: #e3f5e9;
+  --violet: #4338ca;
+  --violet-tint: #ecebfd;
   --chart-1: #0f766e;
   --chart-2: #a9772f;
   --chart-3: #1f9d55;
@@ -112,5 +121,14 @@
   }
   .eyebrow {
     @apply font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary;
+  }
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, var(--border) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  .bg-hero-glow {
+    background:
+      radial-gradient(560px circle at 88% 8%, color-mix(in oklch, var(--primary) 14%, transparent), transparent),
+      radial-gradient(480px circle at 12% 92%, color-mix(in oklch, var(--violet) 12%, transparent), transparent);
   }
 }

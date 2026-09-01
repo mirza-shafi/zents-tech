@@ -26,12 +26,16 @@ export type ServiceCategory = {
   margin: string;
   entry: string;
   recurring: string;
+  color: "teal" | "violet" | "brass";
+  icon: "Bot" | "Workflow" | "Code2";
 };
 
 export const serviceCategories: ServiceCategory[] = [
   {
     tag: "The flagship",
     name: "AI Systems",
+    color: "teal",
+    icon: "Bot",
     description:
       "Agents and assistants wired into how your business actually operates — not a chatbot bolted onto a website.",
     items: [
@@ -47,6 +51,8 @@ export const serviceCategories: ServiceCategory[] = [
   {
     tag: "The flagship's twin",
     name: "Business Automation",
+    color: "violet",
+    icon: "Workflow",
     description:
       "The workflows, integrations, and routing that connect the tools you already run — so nothing falls through a spreadsheet again.",
     items: [
@@ -62,6 +68,8 @@ export const serviceCategories: ServiceCategory[] = [
   {
     tag: "The credibility layer",
     name: "Software Engineering",
+    color: "brass",
+    icon: "Code2",
     description:
       "When no off-the-shelf tool fits the workflow, we build it — internal tools, dashboards, and the software your systems run on.",
     items: [
@@ -75,6 +83,15 @@ export const serviceCategories: ServiceCategory[] = [
     recurring: "Recurring: software maintenance & hosting.",
   },
 ];
+
+export const pillarColorClasses: Record<
+  ServiceCategory["color"],
+  { icon: string; badge: string; ring: string }
+> = {
+  teal: { icon: "text-primary", badge: "bg-accent text-primary", ring: "ring-primary/15" },
+  violet: { icon: "text-violet", badge: "bg-violet-tint text-violet", ring: "ring-violet/15" },
+  brass: { icon: "text-brass", badge: "bg-brass-tint text-brass", ring: "ring-brass/15" },
+};
 
 export type ProductizedService = {
   name: string;

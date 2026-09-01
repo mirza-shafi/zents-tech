@@ -4,10 +4,10 @@ import { m, useReducedMotion } from "motion/react";
 import { Inbox, Workflow, Network, TrendingUp } from "lucide-react";
 
 const nodes = [
-  { icon: Inbox, title: "A manual task", detail: "A lead, a ticket, an order" },
-  { icon: Workflow, title: "An AI agent or automation", detail: "Reads it, acts on it" },
-  { icon: Network, title: "Your existing tools", detail: "CRM, inbox, sheets, APIs" },
-  { icon: TrendingUp, title: "A better outcome", detail: "Faster, without the headcount" },
+  { icon: Inbox, title: "A manual task", detail: "A lead, a ticket, an order", iconCls: "text-muted-foreground", badgeCls: "bg-muted" },
+  { icon: Workflow, title: "An AI agent or automation", detail: "Reads it, acts on it", iconCls: "text-primary", badgeCls: "bg-accent" },
+  { icon: Network, title: "Your existing tools", detail: "CRM, inbox, sheets, APIs", iconCls: "text-violet", badgeCls: "bg-violet-tint" },
+  { icon: TrendingUp, title: "A better outcome", detail: "Faster, without the headcount", iconCls: "text-good", badgeCls: "bg-good-tint" },
 ];
 
 const nodePositions = [12.5, 37.5, 62.5, 87.5]; // percent, matches the 4-col grid centers
@@ -20,6 +20,8 @@ function Connector({ orientation }: { orientation: "horizontal" | "vertical" }) 
     ? { d: `M ${nodePositions[0]} 2 L ${nodePositions[3]} 2`, viewBox: "0 0 100 4" }
     : { d: `M 2 ${nodePositions[0]} L 2 ${nodePositions[3]}`, viewBox: "0 0 4 100" };
 
+  const gradientId = `flow-gradient-${orientation}`;
+
   return (
     <svg
       aria-hidden="true"
@@ -27,6 +29,20 @@ function Connector({ orientation }: { orientation: "horizontal" | "vertical" }) 
       viewBox={pathProps.viewBox}
       preserveAspectRatio="none"
     >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1={isHorizontal ? "0%" : "0%"}
+          y1={isHorizontal ? "0%" : "0%"}
+          x2={isHorizontal ? "100%" : "0%"}
+          y2={isHorizontal ? "0%" : "100%"}
+        >
+          <stop offset="0%" stopColor="var(--muted-foreground)" />
+          <stop offset="45%" stopColor="var(--primary)" />
+          <stop offset="75%" stopColor="var(--violet)" />
+          <stop offset="100%" stopColor="var(--good)" />
+        </linearGradient>
+      </defs>
       <path
         d={pathProps.d}
         stroke="var(--border)"
@@ -36,7 +52,7 @@ function Connector({ orientation }: { orientation: "horizontal" | "vertical" }) 
       />
       <m.path
         d={pathProps.d}
-        stroke="var(--primary)"
+        stroke={`url(#${gradientId})`}
         strokeWidth="1.5"
         fill="none"
         vectorEffect="non-scaling-stroke"
@@ -101,8 +117,10 @@ function Node({
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: 0.15 * index }}
     >
-      <div className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full border border-border bg-card shadow-[0_1px_2px_rgba(18,22,28,0.04),0_8px_24px_-12px_rgba(18,22,28,0.10)]">
-        <Icon className="size-6 text-primary" strokeWidth={1.75} />
+      <div
+        className={`relative z-10 flex size-14 shrink-0 items-center justify-center rounded-full border border-border shadow-[0_1px_2px_rgba(18,22,28,0.04),0_8px_24px_-12px_rgba(18,22,28,0.10)] ${node.badgeCls}`}
+      >
+        <Icon className={`size-6 ${node.iconCls}`} strokeWidth={1.75} />
       </div>
       <div>
         <h3 className="font-display text-sm font-bold">{node.title}</h3>

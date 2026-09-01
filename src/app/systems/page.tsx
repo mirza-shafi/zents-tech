@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Bot, Workflow, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/reveal";
-import { serviceCategories, productizedServices } from "@/lib/site-data";
+import { serviceCategories, productizedServices, pillarColorClasses } from "@/lib/site-data";
+
+const categoryIcons = { Bot, Workflow, Code2 };
 
 export const metadata: Metadata = {
   title: "Systems",
@@ -34,11 +36,17 @@ export default function SystemsPage() {
       {/* Categories detail */}
       <section className="border-b border-border">
         <div className="container-page space-y-6 py-16 md:py-20">
-          {serviceCategories.map((cat) => (
+          {serviceCategories.map((cat) => {
+            const Icon = categoryIcons[cat.icon];
+            const colors = pillarColorClasses[cat.color];
+            return (
             <Card key={cat.name}>
               <CardContent className="grid gap-8 md:grid-cols-[1fr_1fr]">
                 <div>
-                  <span className="eyebrow">{cat.tag}</span>
+                  <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
+                    <Icon className="size-5" strokeWidth={1.75} />
+                  </div>
+                  <span className="eyebrow mt-4 block">{cat.tag}</span>
                   <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight">
                     {cat.name}
                   </h2>
@@ -46,7 +54,7 @@ export default function SystemsPage() {
                   <ul className="mt-5 flex flex-col gap-2.5">
                     {cat.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                        <CheckCircle2 className={`mt-0.5 size-4 shrink-0 ${colors.icon}`} />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -68,7 +76,8 @@ export default function SystemsPage() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
 
           {/* Diagnostics */}
           <Card className="border-primary/40">
