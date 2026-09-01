@@ -84,6 +84,11 @@
   --good-tint: #e3f5e9;
   --violet: #4338ca;
   --violet-tint: #ecebfd;
+  --footer-bg: #0d121c;
+  --footer-fg: #e8edf4;
+  --footer-muted: #8b96a8;
+  --footer-border: rgba(255, 255, 255, 0.09);
+  --footer-accent: #2dd4bf;
   --chart-1: #0f766e;
   --chart-2: #a9772f;
   --chart-3: #1f9d55;

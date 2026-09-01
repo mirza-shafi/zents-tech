@@ -13,11 +13,11 @@ function FacebookIcon({ className = "" }: { className?: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border">
+    <footer className="bg-[var(--footer-bg)] text-[var(--footer-fg)]">
       <div className="container-page flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
-          <Logo />
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          <Logo variant="dark" />
+          <p className="mt-4 text-sm leading-relaxed text-[var(--footer-muted)]">
             AI systems and business automation for companies in Bangladesh and
             abroad. We build the systems the business runs on.
           </p>
@@ -27,7 +27,8 @@ export function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              className="flex size-9 items-center justify-center rounded-md border transition-colors"
+              style={{ borderColor: "var(--footer-border)", color: "var(--footer-muted)" }}
             >
               <MessageCircle className="size-4" />
             </a>
@@ -36,7 +37,8 @@ export function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Zents Tech on Facebook"
-              className="flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              className="flex size-9 items-center justify-center rounded-md border transition-colors"
+              style={{ borderColor: "var(--footer-border)", color: "var(--footer-muted)" }}
             >
               <FacebookIcon className="size-4" />
             </a>
@@ -45,13 +47,15 @@ export function SiteFooter() {
 
         <div className="flex flex-wrap gap-x-12 gap-y-8">
           <div>
-            <div className="eyebrow mb-3">Site</div>
-            <ul className="flex flex-col gap-2">
+            <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--footer-accent)]">
+              Site
+            </div>
+            <ul className="mt-3 flex flex-col gap-2">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
+                    className="text-sm text-[var(--footer-muted)] transition-colors hover:text-[var(--footer-fg)]"
                   >
                     {item.label}
                   </Link>
@@ -60,15 +64,22 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <div className="eyebrow mb-3">Contact</div>
-            <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+            <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--footer-accent)]">
+              Contact
+            </div>
+            <ul className="mt-3 flex flex-col gap-2 text-sm text-[var(--footer-muted)]">
               <li>
-                <a href={`mailto:${contact.email}`} className="hover:text-foreground">
+                <a href={`mailto:${contact.email}`} className="transition-colors hover:text-[var(--footer-fg)]">
                   {contact.email}
                 </a>
               </li>
               <li>
-                <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-[var(--footer-fg)]"
+                >
                   WhatsApp: {contact.whatsappNumber}
                 </a>
               </li>
@@ -76,13 +87,15 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <div className="eyebrow mb-3">Legal</div>
-            <ul className="flex flex-col gap-2">
+            <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--footer-accent)]">
+              Legal
+            </div>
+            <ul className="mt-3 flex flex-col gap-2">
               {legalNav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
+                    className="text-sm text-[var(--footer-muted)] transition-colors hover:text-[var(--footer-fg)]"
                   >
                     {item.label}
                   </Link>
@@ -92,8 +105,8 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="border-t border-border py-6">
-        <p className="container-page font-mono text-xs text-muted-foreground">
+      <div className="border-t py-6" style={{ borderColor: "var(--footer-border)" }}>
+        <p className="container-page font-mono text-xs text-[var(--footer-muted)]">
           © {new Date().getFullYear()} Zents Tech. All rights reserved.
         </p>
       </div>
