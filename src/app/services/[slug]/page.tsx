@@ -59,7 +59,7 @@ export function generateStaticParams() {
   return serviceCategories.map((c) => ({ slug: c.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/systems/[slug]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/services/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const cat = serviceCategories.find((c) => c.slug === slug);
   if (!cat) return {};
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: PageProps<"/systems/[slug]">)
   };
 }
 
-export default async function SystemDetailPage({ params }: PageProps<"/systems/[slug]">) {
+export default async function ServiceDetailPage({ params }: PageProps<"/services/[slug]">) {
   const { slug } = await params;
   const cat = serviceCategories.find((c) => c.slug === slug);
   if (!cat) notFound();
@@ -86,10 +86,10 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
         <div className="container-page grid items-start gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <Reveal>
             <Link
-              href="/systems"
+              href="/services"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              <ArrowLeft className="size-4" /> All systems
+              <ArrowLeft className="size-4" /> All services
             </Link>
             <div className={`mt-5 flex size-12 items-center justify-center rounded-full ${colors.badge}`}>
               <Icon className="size-6" strokeWidth={1.75} />
@@ -108,7 +108,7 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
                 Get an Audit
                 <ArrowRight className="size-4" />
               </Button>
-              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/systems" />}>
+              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/services" />}>
                 See pricing &amp; full architecture
               </Button>
             </div>
@@ -206,7 +206,7 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
               return (
                 <Link
                   key={c.slug}
-                  href={`/systems/${c.slug}`}
+                  href={`/services/${c.slug}`}
                   className="group rounded-xl border border-border p-5 transition-colors hover:border-primary/40"
                 >
                   <div className={`flex size-10 items-center justify-center rounded-full ${otherColors.badge}`}>

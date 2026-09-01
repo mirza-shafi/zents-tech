@@ -1,7 +1,7 @@
 export const siteUrl = "https://zentstech.com";
 
 export const nav = [
-  { href: "/systems", label: "Systems" },
+  { href: "/services", label: "Services" },
   { href: "/process", label: "Process" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/blog", label: "Blog" },
@@ -37,7 +37,7 @@ export const faqs = [
   },
   {
     q: "How much does a typical project cost?",
-    a: "It depends on scope and market — see the Systems page for real BDT and USD ranges on every productized offer. Nothing on this site is a placeholder price.",
+    a: "It depends on scope and market — see the Services page for real BDT and USD ranges on every productized offer. Nothing on this site is a placeholder price.",
   },
   {
     q: "Will you sign an NDA?",

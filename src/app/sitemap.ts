@@ -4,9 +4,9 @@ import { blogPosts } from "@/lib/blog-data";
 
 const routes = [
   { path: "", changeFrequency: "weekly" as const, priority: 1 },
-  { path: "/systems", changeFrequency: "monthly" as const, priority: 0.9 },
+  { path: "/services", changeFrequency: "monthly" as const, priority: 0.9 },
   ...serviceCategories.map((cat) => ({
-    path: `/systems/${cat.slug}`,
+    path: `/services/${cat.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   })),

@@ -31,7 +31,7 @@ export function SiteHeader() {
           <NavigationMenuList className="gap-1">
             <NavigationMenuItem>
               <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground data-[popup-open]:text-foreground">
-                Systems
+                Services
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="w-[340px] p-1">
@@ -41,7 +41,7 @@ export function SiteHeader() {
                     return (
                       <NavigationMenuLink
                         key={cat.slug}
-                        render={<Link href={`/systems#${cat.slug}`} />}
+                        render={<Link href={`/services/${cat.slug}`} />}
                         className="items-start gap-3"
                       >
                         <div className={`mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full ${colors.badge}`}>
@@ -57,7 +57,7 @@ export function SiteHeader() {
                     );
                   })}
                   <NavigationMenuLink
-                    render={<Link href="/systems" />}
+                    render={<Link href="/services" />}
                     className="mt-1 justify-between border-t border-border pt-2.5 text-sm font-medium text-primary"
                   >
                     See full architecture &amp; pricing
@@ -102,7 +102,7 @@ export function SiteHeader() {
             </NavigationMenuItem>
 
             {nav
-              .filter((item) => item.href !== "/systems" && item.href !== "/process")
+              .filter((item) => item.href !== "/services" && item.href !== "/process")
               .map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <NavigationMenuLink

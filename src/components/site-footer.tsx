@@ -61,7 +61,7 @@ export function SiteFooter() {
             {serviceCategories.map((cat) => (
               <Link
                 key={cat.slug}
-                href={`/systems/${cat.slug}`}
+                href={`/services/${cat.slug}`}
                 className="group border-b py-3.5 first:pt-0 last:border-b-0"
                 style={{ borderColor: "var(--footer-border)" }}
               >

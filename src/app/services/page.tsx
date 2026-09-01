@@ -16,25 +16,26 @@ const hoverColor: Record<string, string> = {
 };
 
 export const metadata: Metadata = {
-  title: "Systems",
+  title: "Services",
   description:
-    "AI Systems, Business Automation, and Software Engineering — the systems Zents Tech builds, and what each one costs.",
+    "AI Systems, Business Automation, and Software Engineering — the services Zents Tech builds, and what each one costs.",
 };
 
-export default function SystemsPage() {
+export default function ServicesPage() {
   return (
     <>
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
           <Reveal>
-            <span className="eyebrow">Systems</span>
+            <span className="eyebrow">Services</span>
             <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
-              Three systems. One diagnostic to get into any of them.
+              Three services. One diagnostic to get into any of them.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-              We don&rsquo;t sell a menu of eight unrelated services. We build
-              AI Systems and Business Automation as the core of the business,
-              with Software Engineering underneath to hold them together.
+              We don&rsquo;t spread ourselves across eight unrelated
+              offerings. AI Systems and Business Automation are the core of
+              the business, with Software Engineering underneath to hold
+              them together.
             </p>
           </Reveal>
         </div>
@@ -50,7 +51,7 @@ export default function SystemsPage() {
             <Reveal key={cat.name} delay={i * 0.06}>
               <Card id={cat.slug} className="scroll-mt-24">
                 <CardContent className="grid gap-8 md:grid-cols-[1fr_1fr]">
-                  <Link href={`/systems/${cat.slug}`} className="group block">
+                  <Link href={`/services/${cat.slug}`} className="group block">
                     <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
                       <Icon className="size-5" strokeWidth={1.75} />
                     </div>

@@ -89,6 +89,7 @@ export default function Home() {
                   src="/images/hero-workspace.jpg"
                   alt=""
                   fill
+                  priority
                   sizes="(min-width: 768px) 280px, 60vw"
                   className="object-cover"
                 />
@@ -98,6 +99,7 @@ export default function Home() {
                   src="/images/code-screen.jpg"
                   alt=""
                   fill
+                  priority
                   sizes="(min-width: 768px) 180px, 40vw"
                   className="object-cover"
                 />
@@ -141,10 +143,10 @@ export default function Home() {
               </h2>
             </div>
             <Link
-              href="/systems"
+              href="/services"
               className="flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
             >
-              Explore all systems <ArrowRight className="size-4" />
+              Explore all services <ArrowRight className="size-4" />
             </Link>
           </Reveal>
 
@@ -181,13 +183,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Systems overview */}
-      <section id="systems" className="border-b border-border">
+      {/* Services overview */}
+      <section id="services" className="border-b border-border">
         <div className="container-page py-20">
           <Reveal className="max-w-2xl">
             <span className="eyebrow">What we build</span>
             <h2 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-              Three systems, not eight services.
+              Three services. Not a sprawling menu.
             </h2>
             <p className="mt-4 text-muted-foreground">
               AI Systems and Business Automation are the front door.
@@ -202,7 +204,7 @@ export default function Home() {
               const colors = pillarColorClasses[cat.color];
               return (
                 <Reveal key={cat.name} delay={i * 0.08}>
-                  <Link href={`/systems/${cat.slug}`} className="group block h-full">
+                  <Link href={`/services/${cat.slug}`} className="group block h-full">
                     <Card className="flex h-full flex-col transition-colors group-hover:border-primary/40">
                       <CardContent className="flex flex-1 flex-col">
                         <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
@@ -235,8 +237,8 @@ export default function Home() {
           </div>
 
           <div className="mt-8">
-            <Button variant="outline" nativeButton={false} render={<Link href="/systems" />}>
-              See the full system architecture &amp; pricing
+            <Button variant="outline" nativeButton={false} render={<Link href="/services" />}>
+              See the full service breakdown &amp; pricing
               <ArrowRight className="size-4" />
             </Button>
           </div>

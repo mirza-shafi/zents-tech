@@ -53,7 +53,7 @@ export default function TermsPage() {
             </h2>
             <p className="mt-3">
               Prices, timelines, and scope shown on this site (including on
-              the Systems page) are indicative ranges meant to help you
+              the Services page) are indicative ranges meant to help you
               understand what a typical engagement looks like. They are not
               a quote for your specific situation. The actual price, scope,
               and timeline for any engagement are set out in a written
