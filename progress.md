@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 24)
+Last updated: 2026-09-01 (rev 25)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -227,6 +227,12 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Kept the reference's structure, not its brand** — used Zents Tech's own dark-navy/teal tokens (`--footer-bg`/`--footer-fg`/`--footer-accent`) instead of the reference's orange, and didn't add Twitter/Instagram/LinkedIn company icons since those accounts don't exist — kept the same two real channels (WhatsApp, Facebook) the old footer had, just restyled as filled circular badges.
 - [x] Since this component is shared across every page via the root layout, this single change updates the footer site-wide — verified on the homepage and confirmed the same footer renders at the bottom of `/systems` after an anchor click.
 - [x] Verified in-browser: each service link correctly jumps to its `/systems#...` anchor, "Let's Talk" routes to `/contact`, layout stacks cleanly on mobile (375px).
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 25 (this session) — bigger "LET'S TALK" in the footer
+
+- [x] Bumped the footer's "LET'S TALK" from `text-5xl/6xl` to `text-7xl/8xl/9xl` (mobile/tablet/desktop) with tighter leading and tracking, and widened its grid column (`1.2fr → 1.3fr`, other two columns `1fr → 0.85fr`) so it now dominates and fills its side of the footer, matching the reference more closely.
+- [x] Verified at 1280px, 1440px, and mobile (375px) — no overflow or clipping at any size, site-wide (shared footer component).
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
