@@ -82,7 +82,7 @@ export default function CareerPage() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="container-page grid items-center gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
+        <div className="container-page grid items-start gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <Reveal>
             <span className="eyebrow">Career</span>
             <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
@@ -95,7 +95,7 @@ export default function CareerPage() {
               hear from and how to actually reach us.
             </p>
           </Reveal>
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl shadow-[0_1px_2px_rgba(18,22,28,0.04),0_16px_40px_-12px_rgba(18,22,28,0.35)] md:aspect-[3/4]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_1px_2px_rgba(18,22,28,0.04),0_16px_40px_-12px_rgba(18,22,28,0.35)]">
             <Image src="/images/code-screen.jpg" alt="" fill className="object-cover" priority />
           </div>
         </div>

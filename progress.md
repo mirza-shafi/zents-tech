@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 28)
+Last updated: 2026-09-01 (rev 30)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -267,6 +267,20 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Added the 3 new URLs to `sitemap.ts` (generated from `serviceCategories`, not hardcoded, so it stays correct if a category is ever added).
 - [x] Verified in-browser: clicking a homepage card navigates to the right detail page, the flow visualization renders correctly (and stacks vertically on mobile), cross-links between the 3 systems work, and the untouched `/systems` overview still renders exactly as before.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean — all 3 detail pages show up as statically pre-rendered (SSG) routes in the build output.
+
+## Since rev 29 (this session) — fixed the oversized hero photo on the system detail pages
+
+- [x] You flagged the right-side hero photo on the new `/systems/[slug]` pages as way too tall. It had copied the tall portrait crop (`aspect-[4/5]`/`aspect-[3/4]`) used on the About and Career page heroes — a reasonable fit there since those pages have a full two-paragraph story next to the photo, but this page's shorter intro left a lot of empty-looking photo dominating the row.
+- [x] Changed it to a shorter landscape crop (`aspect-[4/3]`, no taller mobile variant) and switched the hero grid from `items-center` to `items-start` so the photo lines up with the top of the text instead of floating centered in a taller row.
+- [x] One shared template (`src/app/systems/[slug]/page.tsx`), so this fixes all 3 pages (AI Systems, Business Automation, Software Engineering) at once.
+- [x] Verified in-browser on all 3 pages at desktop and mobile — same box size across all three, top-aligned, no oversized empty photo.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 30 (this session) — same hero-photo fix applied to About and Career
+
+- [x] Applied the exact rev 29 fix to the two other pages that had the same tall portrait hero crop: `about-workspace.jpg` on About, `code-screen.jpg` on Career. Both changed from `aspect-[4/5] md:aspect-[3/4]` + `items-center` to `aspect-[4/3]` + `items-start`, same as the systems detail pages.
+- [x] Verified in-browser on both pages, desktop and mobile — photo now sits proportionate to and top-aligned with the text, no oversized empty photo.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
