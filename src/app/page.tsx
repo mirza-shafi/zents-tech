@@ -21,14 +21,12 @@ export default function Home() {
               already use, and monitored so they keep working after we ship.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href="/contact">
-                  Get an Automation &amp; AI Readiness Audit
-                  <ArrowRight className="size-4" />
-                </Link>
+              <Button size="lg" render={<Link href="/contact" />}>
+                Get an Automation &amp; AI Readiness Audit
+                <ArrowRight className="size-4" />
               </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/process">See how we work</Link>
+              <Button size="lg" variant="outline" render={<Link href="/process" />}>
+                See how we work
               </Button>
             </div>
           </div>
@@ -106,11 +104,9 @@ export default function Home() {
           </div>
 
           <div className="mt-8">
-            <Button asChild variant="outline">
-              <Link href="/systems">
-                See the full system architecture &amp; pricing
-                <ArrowRight className="size-4" />
-              </Link>
+            <Button variant="outline" render={<Link href="/systems" />}>
+              See the full system architecture &amp; pricing
+              <ArrowRight className="size-4" />
             </Button>
           </div>
         </div>
@@ -186,11 +182,9 @@ export default function Home() {
             you honestly whether a system is worth building for it.
           </p>
           <div className="mt-8">
-            <Button asChild size="lg">
-              <Link href="/contact">
-                Book a systems review
-                <ArrowRight className="size-4" />
-              </Link>
+            <Button size="lg" render={<Link href="/contact" />}>
+              Book a systems review
+              <ArrowRight className="size-4" />
             </Button>
           </div>
         </div>

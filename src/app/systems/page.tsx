@@ -88,10 +88,8 @@ export default function SystemsPage() {
                   diagnostic that ends in a prioritized roadmap — not a build
                   commitment.
                 </p>
-                <Button asChild className="mt-2 w-fit">
-                  <Link href="/contact">
-                    Get an Audit <ArrowRight className="size-4" />
-                  </Link>
+                <Button className="mt-2 w-fit" render={<Link href="/contact" />}>
+                  Get an Audit <ArrowRight className="size-4" />
                 </Button>
               </div>
             </CardContent>
@@ -142,11 +140,9 @@ export default function SystemsPage() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <Button asChild size="lg">
-              <Link href="/contact">
-                Talk through what fits your business
-                <ArrowRight className="size-4" />
-              </Link>
+            <Button size="lg" render={<Link href="/contact" />}>
+              Talk through what fits your business
+              <ArrowRight className="size-4" />
             </Button>
           </div>
         </div>

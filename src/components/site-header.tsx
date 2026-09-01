@@ -29,16 +29,18 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button asChild size="sm">
-            <Link href="/contact">Get an Audit</Link>
+          <Button size="sm" render={<Link href="/contact" />}>
+            Get an Audit
           </Button>
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
-              <Menu className="size-5" />
-            </Button>
+          <SheetTrigger
+            render={
+              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu" />
+            }
+          >
+            <Menu className="size-5" />
           </SheetTrigger>
           <SheetContent side="right" className="w-72">
             <SheetHeader>
@@ -57,10 +59,11 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
-              <Button asChild className="mt-3">
-                <Link href="/contact" onClick={() => setOpen(false)}>
-                  Get an Audit
-                </Link>
+              <Button
+                className="mt-3"
+                render={<Link href="/contact" onClick={() => setOpen(false)} />}
+              >
+                Get an Audit
               </Button>
             </nav>
           </SheetContent>
