@@ -50,18 +50,16 @@ export default function SystemsPage() {
             <Reveal key={cat.name} delay={i * 0.06}>
               <Card id={cat.slug} className="scroll-mt-24">
                 <CardContent className="grid gap-8 md:grid-cols-[1fr_1fr]">
-                  <div>
+                  <Link href={`/systems/${cat.slug}`} className="group block">
                     <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
                       <Icon className="size-5" strokeWidth={1.75} />
                     </div>
                     <span className="eyebrow mt-4 block">{cat.tag}</span>
-                    <Link href={`/systems/${cat.slug}`} className="group mt-2 inline-block">
-                      <h2
-                        className={`text-balance font-display text-3xl font-extrabold tracking-tight transition-colors md:text-4xl ${hoverColor[cat.color]}`}
-                      >
-                        {cat.name}
-                      </h2>
-                    </Link>
+                    <h2
+                      className={`mt-2 text-balance font-display text-3xl font-extrabold tracking-tight transition-colors md:text-4xl ${hoverColor[cat.color]}`}
+                    >
+                      {cat.name}
+                    </h2>
                     <p className="mt-3 text-muted-foreground">{cat.description}</p>
                     <ul className="mt-5 flex flex-col gap-2.5">
                       {cat.items.map((item) => (
@@ -71,7 +69,11 @@ export default function SystemsPage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                    <span className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-primary">
+                      See full details
+                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
                   <div className="flex flex-col justify-center gap-3 rounded-lg bg-muted/40 p-5">
                     <p className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                       Margin

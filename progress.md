@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 33)
+Last updated: 2026-09-01 (rev 35)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -306,6 +306,21 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Removed the arrow badges from `CategoryFlow`** — you pointed out the 4 items in each system (e.g. AI agents, support agents, RAG, voice AI) are independent capabilities, not sequential steps, so a directional arrow between them implied an order that isn't real. Kept the animated connecting line itself, just dropped the arrow icon on top of it.
 - [x] Bumped the "MARGIN" / "ENTRY POINT" / "RECURRING" labels on the system detail pages from `text-xs` to `text-lg font-bold` — much more prominent now, per your screenshot.
 - [x] Verified in-browser on all 3 category pages and mobile — no arrows on the flow line, stat labels clearly bigger.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 34 (this session) — clickable, bigger category headings on the /systems overview page
+
+- [x] The `/systems` overview page's category headings ("AI Systems," "Business Automation," "Software Engineering") are now links to their own detail page (`/systems/ai-systems` etc.) — same pattern already used in the footer's "What we build" list, per your request. Hover changes the heading to the category's own accent color.
+- [x] Bumped the heading size at the same time: `text-2xl md:text-3xl → text-3xl md:text-4xl`.
+- [x] This is the one addition to the otherwise-untouched `/systems` page — everything else there (pricing table, Diagnostics, productized offers) is exactly as it was.
+- [x] Verified the link with a real click event (not just visually) — navigates correctly to the matching detail page; confirmed on desktop and mobile.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 35 (this session) — the clickable area was too narrow, widened it
+
+- [x] **Diagnosed why clicks weren't landing**: the rev 34 fix only made the heading text itself a link — verified with `document.elementFromPoint` that the link markup was technically correct and a click exactly on the heading text did navigate, but that's a small, easy-to-miss target. Clicking the icon, tag, description, or checklist (most of the visible card) did nothing, which is what you were actually running into.
+- [x] **Widened the whole left column of each category card into one link** — icon, tag, heading, description, and the feature checklist are all now part of the same clickable area, plus an explicit "See full details →" line at the bottom so it's visually obvious where to click (same treatment as the homepage's system cards). The right-hand margin/entry/recurring panel stays a plain reference box, not part of the link.
+- [x] Verified with real clicks (not just DOM inspection) at multiple points across the card — description text, checklist area — all now navigate correctly to the matching detail page. Confirmed on desktop and mobile.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
