@@ -10,6 +10,12 @@ import { serviceCategories, pillarColorClasses } from "@/lib/site-data";
 
 const categoryIcons = { Bot, Workflow, Code2 };
 
+const sectionTint: Record<string, string> = {
+  teal: "bg-accent/40",
+  violet: "bg-violet-tint/50",
+  brass: "bg-brass-tint/50",
+};
+
 const heroImages: Record<string, string> = {
   "ai-systems": "/images/code-screen.jpg",
   "business-automation": "/images/dashboard-metrics.jpg",
@@ -88,7 +94,11 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
             <div className={`mt-5 flex size-12 items-center justify-center rounded-full ${colors.badge}`}>
               <Icon className="size-6" strokeWidth={1.75} />
             </div>
-            <span className="eyebrow mt-4 block">{cat.tag}</span>
+            <span
+              className={`mt-4 block font-mono text-[11px] font-medium tracking-[0.14em] uppercase ${colors.icon}`}
+            >
+              {cat.tag}
+            </span>
             <h1 className="mt-2 text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               {cat.name}
             </h1>
@@ -114,21 +124,25 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
         <div className="container-page py-16 md:py-20">
           <Reveal className="max-w-2xl">
             <span className="eyebrow">What&rsquo;s included</span>
-            <h2 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+            <h2 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
               {cat.items.length} things this actually covers.
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {cat.items.map((item, i) => (
-              <Reveal key={item} delay={i * 0.06} className="flex gap-4">
+              <Reveal
+                key={item}
+                delay={i * 0.06}
+                className="flex gap-4 rounded-xl border border-border p-5 transition-colors hover:border-primary/30"
+              >
                 <div
-                  className={`flex size-9 shrink-0 items-center justify-center rounded-full font-mono text-sm font-bold ${colors.badge}`}
+                  className={`flex size-10 shrink-0 items-center justify-center rounded-full font-mono text-base font-bold ${colors.badge}`}
                 >
                   {i + 1}
                 </div>
                 <div>
-                  <h3 className="font-display text-base font-bold">{item}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{copy.itemDetails[i]}</p>
+                  <h3 className={`font-display text-lg font-bold ${colors.icon}`}>{item}</h3>
+                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{copy.itemDetails[i]}</p>
                 </div>
               </Reveal>
             ))}
@@ -137,11 +151,13 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
       </section>
 
       {/* Visualization */}
-      <section className="border-b border-border bg-muted/30">
+      <section className={`border-b border-border ${sectionTint[cat.color]}`}>
         <div className="container-page py-16 md:py-20">
           <Reveal className="text-center">
-            <span className="eyebrow">How it connects</span>
-            <h2 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+            <span className={`font-mono text-[11px] font-medium tracking-[0.14em] uppercase ${colors.icon}`}>
+              How it connects
+            </span>
+            <h2 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
               {cat.name} as a flow, not a feature list.
             </h2>
           </Reveal>
@@ -156,16 +172,19 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
         <div className="container-page py-16 md:py-20">
           <div className="grid gap-5 sm:grid-cols-3">
             <div className="rounded-lg border border-border p-5">
-              <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">Margin</p>
-              <p className="mt-2 text-sm">{cat.margin}</p>
+              <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
+              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Margin</p>
+              <p className="mt-1.5 text-base">{cat.margin}</p>
             </div>
             <div className="rounded-lg border border-border p-5">
-              <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">Entry point</p>
-              <p className="mt-2 text-sm">{cat.entry}</p>
+              <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
+              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Entry point</p>
+              <p className="mt-1.5 text-base">{cat.entry}</p>
             </div>
             <div className="rounded-lg border border-border p-5">
-              <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">Recurring</p>
-              <p className="mt-2 text-sm">{cat.recurring}</p>
+              <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
+              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Recurring</p>
+              <p className="mt-1.5 text-base">{cat.recurring}</p>
             </div>
           </div>
         </div>
@@ -176,7 +195,7 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
         <div className="container-page py-16 md:py-20">
           <Reveal>
             <span className="eyebrow">Other systems</span>
-            <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight md:text-3xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               The other two pieces.
             </h2>
           </Reveal>
