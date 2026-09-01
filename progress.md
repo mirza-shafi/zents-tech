@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 30)
+Last updated: 2026-09-01 (rev 33)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -280,6 +280,32 @@ You sent real photos and real links for both founders, which changes the honesty
 
 - [x] Applied the exact rev 29 fix to the two other pages that had the same tall portrait hero crop: `about-workspace.jpg` on About, `code-screen.jpg` on Career. Both changed from `aspect-[4/5] md:aspect-[3/4]` + `items-center` to `aspect-[4/3]` + `items-start`, same as the systems detail pages.
 - [x] Verified in-browser on both pages, desktop and mobile — photo now sits proportionate to and top-aligned with the text, no oversized empty photo.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 31 (this session) — filled out the empty-feeling system detail pages, bigger + colored text
+
+- [x] You flagged `/systems/ai-systems` (and by extension the other two, same template) as feeling empty again, and asked for bigger font sizes and color in the text.
+- [x] **Section headings bumped** to match the rest of the site's boosted scale (`text-3xl md:text-4xl → text-4xl md:text-5xl`) on "What's included," "How it connects," and "The other two pieces."
+- [x] **"What's included" items now sit in bordered cards** instead of floating as bare text — fills the whitespace with real structure, not just bigger font.
+- [x] **Color now follows each category's own accent**, not a fixed teal everywhere: the hero eyebrow, the "How it connects" eyebrow, each feature's title, the flow diagram's labels, and the margin/entry/recurring labels all pull from `pillarColorClasses[cat.color]` — so AI Systems reads teal, Business Automation reads violet, Software Engineering reads brass/amber, matching the badge color already used on the icon circle.
+- [x] **The flow visualization section now has a category-tinted background** (`bg-accent/40` / `bg-violet-tint/50` / `bg-brass-tint/50`) instead of plain grey, and its circles, connecting-line spacing, and labels are all sized up.
+- [x] **Margin/entry/recurring stat cards gained a small category-colored icon** and slightly larger value text, so that section doesn't read as three bare labels.
+- [x] Verified in-browser on all 3 category colors (teal/violet/brass) and on mobile — colors and sizes are consistent per category, nothing overflows. `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 32 (this session) — animated, modern flow diagram on the system pages
+
+- [x] Rebuilt `src/components/category-flow.tsx` from a plain-line, plain-circle diagram into an animated one, reusing the same scroll-triggered "lights up as it enters view" pattern already proven on the Process page's timeline (`process-timeline.tsx`) — circles animate from an idle gray state to the category's active color with a staggered delay, and each connecting line draws in left-to-right instead of just appearing.
+- [x] Added a small circular arrow badge centered on each connecting line, giving the diagram explicit left-to-right directionality instead of a bare line.
+- [x] Bumped sizing again per your request: circles `size-14 → size-16`, number text `text-base → text-xl`, item labels `text-sm → text-lg`.
+- [x] Everything still respects `prefers-reduced-motion` — under it, circles render directly in their final active color and the line renders at full width, no animation at all, matching how `process-timeline.tsx` already handles it.
+- [x] Verified in-browser across all 3 category colors (teal/violet/brass — confirms the active-color map is correct per category) and on mobile, where the line/arrows are hidden and it falls back to a clean vertical stack.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 33 (this session) — dropped the flow arrows, bigger stat labels
+
+- [x] **Removed the arrow badges from `CategoryFlow`** — you pointed out the 4 items in each system (e.g. AI agents, support agents, RAG, voice AI) are independent capabilities, not sequential steps, so a directional arrow between them implied an order that isn't real. Kept the animated connecting line itself, just dropped the arrow icon on top of it.
+- [x] Bumped the "MARGIN" / "ENTRY POINT" / "RECURRING" labels on the system detail pages from `text-xs` to `text-lg font-bold` — much more prominent now, per your screenshot.
+- [x] Verified in-browser on all 3 category pages and mobile — no arrows on the flow line, stat labels clearly bigger.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left

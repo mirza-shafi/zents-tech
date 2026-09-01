@@ -173,17 +173,17 @@ export default async function SystemDetailPage({ params }: PageProps<"/systems/[
           <div className="grid gap-5 sm:grid-cols-3">
             <div className="rounded-lg border border-border p-5">
               <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
-              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Margin</p>
+              <p className={`mt-3 font-mono text-lg font-bold tracking-wide uppercase ${colors.icon}`}>Margin</p>
               <p className="mt-1.5 text-base">{cat.margin}</p>
             </div>
             <div className="rounded-lg border border-border p-5">
               <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
-              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Entry point</p>
+              <p className={`mt-3 font-mono text-lg font-bold tracking-wide uppercase ${colors.icon}`}>Entry point</p>
               <p className="mt-1.5 text-base">{cat.entry}</p>
             </div>
             <div className="rounded-lg border border-border p-5">
               <Icon className={`size-5 ${colors.icon}`} strokeWidth={1.75} />
-              <p className={`mt-3 font-mono text-xs tracking-wide uppercase ${colors.icon}`}>Recurring</p>
+              <p className={`mt-3 font-mono text-lg font-bold tracking-wide uppercase ${colors.icon}`}>Recurring</p>
               <p className="mt-1.5 text-base">{cat.recurring}</p>
             </div>
           </div>

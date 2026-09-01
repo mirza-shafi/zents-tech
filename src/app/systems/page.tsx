@@ -9,6 +9,12 @@ import { serviceCategories, productizedServices, pillarColorClasses } from "@/li
 
 const categoryIcons = { Bot, Workflow, Code2 };
 
+const hoverColor: Record<string, string> = {
+  teal: "group-hover:text-primary",
+  violet: "group-hover:text-violet",
+  brass: "group-hover:text-brass",
+};
+
 export const metadata: Metadata = {
   title: "Systems",
   description:
@@ -49,9 +55,13 @@ export default function SystemsPage() {
                       <Icon className="size-5" strokeWidth={1.75} />
                     </div>
                     <span className="eyebrow mt-4 block">{cat.tag}</span>
-                    <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight md:text-3xl">
-                      {cat.name}
-                    </h2>
+                    <Link href={`/systems/${cat.slug}`} className="group mt-2 inline-block">
+                      <h2
+                        className={`text-balance font-display text-3xl font-extrabold tracking-tight transition-colors md:text-4xl ${hoverColor[cat.color]}`}
+                      >
+                        {cat.name}
+                      </h2>
+                    </Link>
                     <p className="mt-3 text-muted-foreground">{cat.description}</p>
                     <ul className="mt-5 flex flex-col gap-2.5">
                       {cat.items.map((item) => (
