@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { MessageCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact-form";
+import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -29,8 +31,22 @@ export default function ContactPage() {
                 <p className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                   Email
                 </p>
-                <a href="mailto:hello@zentstech.com" className="text-sm font-medium hover:text-primary">
-                  hello@zentstech.com
+                <a href={`mailto:${contact.email}`} className="text-sm font-medium hover:text-primary">
+                  {contact.email}
+                </a>
+              </div>
+              <div>
+                <p className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
+                  WhatsApp
+                </p>
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary"
+                >
+                  <MessageCircle className="size-3.5" />
+                  {contact.whatsappNumber}
                 </a>
               </div>
               <div>

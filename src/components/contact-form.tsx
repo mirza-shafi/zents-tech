@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { contact } from "@/lib/site-data";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -48,9 +49,18 @@ export function ContactForm() {
         <h3 className="font-display text-lg font-bold">Message received.</h3>
         <p className="text-sm text-muted-foreground">
           We reply to every inquiry personally, usually within one business
-          day. If it&rsquo;s urgent, email{" "}
-          <a href="mailto:hello@zentstech.com" className="text-primary underline underline-offset-2">
-            hello@zentstech.com
+          day. If it&rsquo;s urgent, message us on{" "}
+          <a
+            href={contact.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline underline-offset-2"
+          >
+            WhatsApp
+          </a>{" "}
+          or email{" "}
+          <a href={`mailto:${contact.email}`} className="text-primary underline underline-offset-2">
+            {contact.email}
           </a>{" "}
           directly.
         </p>

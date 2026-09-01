@@ -5,6 +5,18 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ];
 
+export const contact = {
+  email: "hello@zentstech.com",
+  whatsappNumber: "+880 1938-820835",
+  whatsappHref: "https://wa.me/8801938820835",
+  facebookHref: "https://www.facebook.com/profile.php?id=61585824459385",
+};
+
+export const legalNav = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+];
+
 export type ServiceCategory = {
   tag: string;
   name: string;
