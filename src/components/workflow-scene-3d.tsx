@@ -38,19 +38,18 @@ function Node({ position, color }: NodeDef) {
 
 function Rig({ reduceMotion }: { reduceMotion: boolean }) {
   const group = useRef<THREE.Group>(null);
-  const autoYaw = useRef(0);
   const pointerYaw = useRef(0);
   const pointerPitch = useRef(0);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!group.current) return;
-    if (!reduceMotion) {
-      autoYaw.current += delta * 0.08;
-    }
-    // Subtle pointer-driven tilt, layered on top of the continuous spin.
-    pointerYaw.current = THREE.MathUtils.lerp(pointerYaw.current, state.pointer.x * 0.18, 0.04);
-    pointerPitch.current = THREE.MathUtils.lerp(pointerPitch.current, state.pointer.y * 0.18, 0.04);
-    group.current.rotation.y = autoYaw.current + pointerYaw.current;
+    // A gentle side-to-side sway, capped well short of 90° so the nodes
+    // never visually swap left-right order and drift out of sync with the
+    // static HTML labels underneath — a full continuous spin would do that.
+    const sway = reduceMotion ? 0 : Math.sin(state.clock.elapsedTime * 0.3) * 0.22;
+    pointerYaw.current = THREE.MathUtils.lerp(pointerYaw.current, state.pointer.x * 0.15, 0.04);
+    pointerPitch.current = THREE.MathUtils.lerp(pointerPitch.current, state.pointer.y * 0.15, 0.04);
+    group.current.rotation.y = sway + pointerYaw.current;
     group.current.rotation.x = pointerPitch.current;
   });
 

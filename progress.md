@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 15)
+Last updated: 2026-09-01 (rev 17)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -147,6 +147,22 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Process page timeline is now animated** (`src/components/process-timeline.tsx`): the connecting line draws in once the timeline scrolls into view, and each numbered checkpoint fills from idle (gray) to active (teal) as it's individually scrolled past, with its content fading/sliding in alongside it.
 - [x] **Caught and fixed a real bug while verifying this**, not just a screenshot artifact this time: the first version used `viewport={{ margin: "-100px" }}` on the scroll triggers, and that negative-margin shorthand silently broke Motion's visibility detection — checkpoints never activated at all, confirmed via computed-style checks at multiple scroll positions. Removed the margin (matching the exact working pattern already used in the homepage's workflow diagram) and reverified with a simulated gradual scroll: all 6 checkpoints now activate correctly in sequence.
 - [x] `tsc`/`build`/`lint` all clean.
+
+## Since rev 16 (this session) — real 3D animation on the homepage
+
+- [x] **Replaced the old flat SVG workflow diagram with a real WebGL 3D scene.** Added `three`, `@react-three/fiber`, `@react-three/drei` and built `src/components/workflow-scene-3d.tsx`: four wireframe icosahedron "nodes" (Manual task → AI/automation → Your tools → Outcome) floating in real 3D space with depth, connected by lines, gently drifting (`Float` from drei) and swaying as a group. The group also tilts toward the cursor (lerped toward pointer position) for a subtle parallax feel on hover.
+- [x] Client-only loaded via `next/dynamic` (`ssr: false`) in `src/components/workflow-3d-section.tsx`, which pairs the canvas with the existing HTML labels underneath — wired into the homepage's "Same task. Different shape." section in place of the retired `WorkflowDiagram` (old file left in place, unreferenced, in case any styling from it is wanted again).
+- [x] **Caught a real bug before it shipped**: the first draft used continuous accumulating rotation, which would eventually spin the 4 nodes past the point where their left-right screen order matches the static HTML labels below them (e.g. "Outcome" visually swapping to the left side while its label stays on the right). Fixed by capping the sway to a bounded sine oscillation (~±22°) plus a small pointer-tilt (~±15°) — comfortably under the 90° threshold where the order could flip. Verified by comparing screenshots at load vs. after 8s of continuous motion: node order stayed stable (gray → teal → violet → green) in both.
+- [x] Respects `prefers-reduced-motion` — the sway (not the pointer-tilt) is disabled via the existing `useReducedMotion()` hook.
+- [x] Verified on mobile viewport (375px) too — canvas renders and nodes stay correctly ordered at the smaller size.
+- [x] `tsc` / `npm run build` / `npm run lint` all clean.
+
+## Since rev 17 (this session) — cursor-reactive glow on key sections
+
+- [x] Added `src/components/cursor-glow.tsx`: a small client component that eases a soft radial glow toward the pointer within its parent section (rAF + lerp, not React state, so it doesn't cause re-renders). Skips itself entirely on touch devices (`matchMedia("(hover: hover) and (pointer: fine)")`) and under `prefers-reduced-motion` — no persistent cursor to react to either way, so it's a clean no-op rather than a degraded version.
+- [x] Wired into the **homepage hero** (`screen` blend, teal, brighter — reveals more of the background photo where the cursor moves without covering the text) and the **final CTA section** (plain blend, very low opacity — a faint spotlight on the light background, not a dark-theme effect forced onto a light one).
+- [x] Verified in-browser: glow fades in on first move, tracks the pointer to different points within each section, and fades out on `pointerleave`; text over the hero stays fully readable.
+- [x] `tsc` / `npm run lint` clean.
 
 ## Not done yet — what's left
 

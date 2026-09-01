@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, Globe, Target, Activity
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/reveal";
+import { CursorGlow } from "@/components/cursor-glow";
 import { Workflow3DSection } from "@/components/workflow-3d-section";
 import { serviceCategories, lifecycle, pillarColorClasses } from "@/lib/site-data";
 
@@ -23,6 +24,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <CursorGlow color="94, 234, 212" size={680} opacity={0.3} blendMode="screen" />
 
         <div className="container-page relative grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
           <Reveal>
@@ -226,7 +228,8 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section>
+      <section className="relative overflow-hidden">
+        <CursorGlow color="15, 118, 110" size={560} opacity={0.14} />
         <div className="container-page py-20 text-center">
           <h2 className="mx-auto max-w-2xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
             Start with a 20-minute systems review.
