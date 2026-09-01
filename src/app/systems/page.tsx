@@ -41,7 +41,7 @@ export default function SystemsPage() {
             const Icon = categoryIcons[cat.icon];
             const colors = pillarColorClasses[cat.color];
             return (
-            <Card key={cat.name}>
+            <Card key={cat.name} id={cat.slug} className="scroll-mt-24">
               <CardContent className="grid gap-8 md:grid-cols-[1fr_1fr]">
                 <div>
                   <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>

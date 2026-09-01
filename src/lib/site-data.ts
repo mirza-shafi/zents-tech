@@ -19,6 +19,7 @@ export const legalNav = [
 ];
 
 export type ServiceCategory = {
+  slug: string;
   tag: string;
   name: string;
   description: string;
@@ -32,6 +33,7 @@ export type ServiceCategory = {
 
 export const serviceCategories: ServiceCategory[] = [
   {
+    slug: "ai-systems",
     tag: "The flagship",
     name: "AI Systems",
     color: "teal",
@@ -49,6 +51,7 @@ export const serviceCategories: ServiceCategory[] = [
     recurring: "Recurring: monthly agent monitoring & improvement.",
   },
   {
+    slug: "business-automation",
     tag: "The flagship's twin",
     name: "Business Automation",
     color: "violet",
@@ -66,6 +69,7 @@ export const serviceCategories: ServiceCategory[] = [
     recurring: "Recurring: automation monitoring & maintenance.",
   },
   {
+    slug: "software-engineering",
     tag: "The credibility layer",
     name: "Software Engineering",
     color: "brass",

@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { lifecycle } from "@/lib/site-data";
+import { slugify } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -64,7 +65,11 @@ export default function ProcessPage() {
             <div className="absolute top-0 bottom-0 left-[15px] hidden w-px bg-border md:block" />
             <div className="flex flex-col gap-10">
               {lifecycle.map((stage, i) => (
-                <div key={stage.step} className="relative flex gap-6 md:gap-8">
+                <div
+                  key={stage.step}
+                  id={slugify(stage.step)}
+                  className="relative flex scroll-mt-24 gap-6 md:gap-8"
+                >
                   <div className="relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border border-primary bg-background font-mono text-xs font-semibold text-primary">
                     {i + 1}
                   </div>

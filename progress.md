@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 8)
+Last updated: 2026-09-01 (rev 9)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -94,6 +94,16 @@ You pushed back on "no images" and asked me to actually find real pictures inste
 - [x] Verified in-browser (fresh tab, no console errors); `tsc`/`build`/`lint` all clean.
 
 Still true from before: no AI image *generator* is available in this session, and I still won't fabricate photos claiming to be Zents Tech's actual team/office — the two images above are honestly generic. If you get real photos taken (team, workspace, a client call), send them and I'll swap them in properly. Video is still the same paid/0-credit situation as before — still waiting on your go-ahead there.
+
+## Since rev 8 (this session) — full-bleed hero photo + more images
+
+- [x] **Homepage hero rebuilt as a full-bleed background photo** (`hero-workspace.jpg` — a real, anonymous person at a desk, warm window light, laptop with a dashboard visible), not just a small card. Left-to-right gradient scrim keeps the headline/CTA legible on the left while the photo shows through more on the right; the "Where the hours actually go" list is now a glass/blur card floating on top of the photo instead of a plain white card.
+- [x] **Slow left-right drift animation** on the hero photo (`hero-bg-pan` keyframe in `globals.css`, 24s loop, subtle ~5% pan with a slight scale so no edges show) — confirmed running via computed styles in-browser. Freezes to a static frame under `prefers-reduced-motion`.
+- [x] Outline CTA button on the photo hero got a frosted-glass treatment (white border/text on translucent white) so it reads correctly against a photo instead of the old light-page style.
+- [x] **Two more real photos added**: a sunlit desk with sticky notes on the About page (fits the "small studio, on purpose" framing much better than a slick corporate office shot would), and the code-screen photo (freed up from the old hero card) reused on the Career page, which had no imagery before.
+- [x] Verified in-browser across Home, About, Career — fresh tabs, zero console errors; `tsc`/`build`/`lint` all clean.
+
+Same honesty note as before: all photos are anonymous/generic (no identifiable faces used as if they were specific real employees), sourced from Unsplash under its free commercial-use license. If real photos come in later, swap-in is straightforward — one `<Image src>` per spot.
 
 ## Not done yet — what's left
 
