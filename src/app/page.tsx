@@ -21,11 +21,11 @@ export default function Home() {
               already use, and monitored so they keep working after we ship.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" render={<Link href="/contact" />}>
+              <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
                 Get an Automation &amp; AI Readiness Audit
                 <ArrowRight className="size-4" />
               </Button>
-              <Button size="lg" variant="outline" render={<Link href="/process" />}>
+              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/process" />}>
                 See how we work
               </Button>
             </div>
@@ -104,7 +104,7 @@ export default function Home() {
           </div>
 
           <div className="mt-8">
-            <Button variant="outline" render={<Link href="/systems" />}>
+            <Button variant="outline" nativeButton={false} render={<Link href="/systems" />}>
               See the full system architecture &amp; pricing
               <ArrowRight className="size-4" />
             </Button>
@@ -182,7 +182,7 @@ export default function Home() {
             you honestly whether a system is worth building for it.
           </p>
           <div className="mt-8">
-            <Button size="lg" render={<Link href="/contact" />}>
+            <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
               Book a systems review
               <ArrowRight className="size-4" />
             </Button>

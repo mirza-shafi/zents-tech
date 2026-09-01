@@ -88,7 +88,7 @@ export default function SystemsPage() {
                   diagnostic that ends in a prioritized roadmap — not a build
                   commitment.
                 </p>
-                <Button className="mt-2 w-fit" render={<Link href="/contact" />}>
+                <Button className="mt-2 w-fit" nativeButton={false} render={<Link href="/contact" />}>
                   Get an Audit <ArrowRight className="size-4" />
                 </Button>
               </div>
@@ -140,7 +140,7 @@ export default function SystemsPage() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <Button size="lg" render={<Link href="/contact" />}>
+            <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
               Talk through what fits your business
               <ArrowRight className="size-4" />
             </Button>

@@ -12,7 +12,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+    <header className="sticky top-0 z-40 border-b border-border bg-background">
       <div className="container-page flex h-16 items-center justify-between">
         <Logo />
 
@@ -29,7 +29,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button size="sm" render={<Link href="/contact" />}>
+          <Button size="sm" nativeButton={false} render={<Link href="/contact" />}>
             Get an Audit
           </Button>
         </div>
@@ -61,7 +61,7 @@ export function SiteHeader() {
               ))}
               <Button
                 className="mt-3"
-                render={<Link href="/contact" onClick={() => setOpen(false)} />}
+                nativeButton={false} render={<Link href="/contact" onClick={() => setOpen(false)} />}
               >
                 Get an Audit
               </Button>

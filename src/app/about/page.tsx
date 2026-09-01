@@ -105,7 +105,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-14 flex justify-center">
-            <Button size="lg" render={<Link href="/contact" />}>
+            <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
               Get in touch
               <ArrowRight className="size-4" />
             </Button>
