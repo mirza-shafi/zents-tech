@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, Globe, Target, Activity, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,9 +37,20 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Card className="self-start bg-card/60">
-            <CardContent className="space-y-4">
-              <div className="eyebrow">Where the hours actually go</div>
+          <div className="relative self-start overflow-hidden rounded-xl shadow-[0_1px_2px_rgba(18,22,28,0.04),0_16px_40px_-12px_rgba(18,22,28,0.35)]">
+            <Image
+              src="/images/code-screen.jpg"
+              alt=""
+              width={900}
+              height={700}
+              className="absolute inset-0 size-full object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
+            <div className="relative space-y-4 p-6">
+              <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
+                Where the hours actually go
+              </div>
               {[
                 "Answering the same support question for the hundredth time",
                 "Copying a lead from WhatsApp into a spreadsheet, manually",
@@ -46,15 +58,15 @@ export default function Home() {
                 "Re-typing the same quote or invoice by hand",
               ].map((line) => (
                 <div key={line} className="flex items-start gap-3">
-                  <div className="mt-2 size-1.5 shrink-0 rounded-full bg-destructive" />
-                  <p className="text-sm leading-relaxed text-foreground/90">{line}</p>
+                  <div className="mt-2 size-1.5 shrink-0 rounded-full bg-red-400" />
+                  <p className="text-sm leading-relaxed text-white/90">{line}</p>
                 </div>
               ))}
-              <p className="border-t border-border pt-4 text-sm text-muted-foreground">
+              <p className="border-t border-white/15 pt-4 text-sm text-white/70">
                 Every one of these is a system, not a hire.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 

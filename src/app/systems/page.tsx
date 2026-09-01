@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Bot, Workflow, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -106,6 +107,37 @@ export default function SystemsPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Banner visual */}
+      <section className="border-b border-border">
+        <div className="container-page py-16 md:py-20">
+          <div className="relative overflow-hidden rounded-xl shadow-[0_1px_2px_rgba(18,22,28,0.04),0_16px_40px_-12px_rgba(18,22,28,0.35)]">
+            <Image
+              src="/images/dashboard-metrics.jpg"
+              alt=""
+              width={1600}
+              height={640}
+              className="h-[280px] w-full object-cover md:h-[340px]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="max-w-md px-8 md:px-12">
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
+                  After launch
+                </span>
+                <h3 className="mt-3 text-balance font-display text-2xl font-extrabold text-white md:text-3xl">
+                  Every system ships with monitoring, not a handoff.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">
+                  Automations break quietly when a third-party API changes.
+                  We track the numbers so someone notices before your
+                  customer does.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
