@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 22)
+Last updated: 2026-09-01 (rev 23)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -211,6 +211,15 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **"Same task. Different shape." now sits on one line** on tablet/desktop — the heading was wrapping because its wrapper had a `max-w-xl` cap (576px) that was too narrow for the phrase at the bumped-up rev 19 font size, not because of the font size itself. Removed that cap; it still wraps naturally on narrow phones, same as every other heading on the site does, since there's no way to guarantee one line at 375px without shrinking the font back down.
 - [x] Kept the flow-particle animation from rev 21 — that part wasn't the complaint.
 - [x] Verified in-browser on desktop and mobile; `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 23 (this session) — "Join Our Team" section, honestly
+
+- [x] Added a "Join Our Team" section to the homepage, referenced from a screenshot of a similar section elsewhere: dark panel, heading, short line, "Visit Career" button linking to `/career`, photo on the right. Placed between "Why us" and the final CTA.
+- [x] **Flagged and resolved a fabrication risk before building it**: the reference screenshot's photo showed a 9-person team — Zents Tech is two people. Asked you how to handle it rather than dropping in a random "team photo" that would misrepresent company size to visitors and candidates; you picked a generic workspace photo with no people in it, consistent with the honesty policy already applied to case studies, client counts, and the About page's real-founders-only photos.
+- [x] Sourced a genuinely free-to-use Unsplash photo (`public/images/join-team-office.jpg` — modern open office, empty desks and chairs, Unsplash License, verified as "Download free" and not an Unsplash+/Getty paid asset before using it).
+- [x] Copy matches what the Career page already says (small on purpose, real ownership, no fixed job postings) rather than introducing a new, inconsistent claim.
+- [x] Reused the `--footer-bg` dark tokens again, same as the tech-stack marquee — still no new colors added to the palette.
+- [x] Verified in-browser on desktop and mobile; the "Visit Career" button correctly routes to `/career`. `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
