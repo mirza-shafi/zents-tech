@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 14)
+Last updated: 2026-09-01 (rev 15)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -156,18 +156,18 @@ You sent real photos and real links for both founders, which changes the honesty
 3. **Contact form doesn't send real email.** `src/app/api/contact/route.ts` validates and logs to the server console only — there's a `TODO` in the file. Needs a real delivery mechanism (Resend, SES, or forwarding inbox) wired in with an API key before this goes live, or inquiries will silently go nowhere.
 4. **`hello@zentstech.com` isn't a real mailbox yet** (assumed placeholder throughout the site — footer, contact page, success message). Needs an actual inbox (Google Workspace / Zoho Mail / etc.) once the domain is live.
 
-### Should do before announcing the site publicly
-5. **No `robots.txt` / `sitemap.xml`.** Not set up yet — easy to add via `src/app/sitemap.ts` and `src/app/robots.ts`.
-6. **No spam protection on the contact form** — no honeypot, rate limiting, or CAPTCHA. Low risk at launch traffic but worth a simple honeypot field early.
-7. **Custom 404 page** — currently Next.js's default `not-found`.
+### Should do before announcing the site publicly — DONE (rev 15)
+5. ~~No `robots.txt` / `sitemap.xml`~~ — [x] Added `src/app/sitemap.ts` (9 real routes, correct priorities) and `src/app/robots.ts` (allows everything except `/api/`, points at the sitemap). Verified both render correctly at `/sitemap.xml` and `/robots.txt`.
+6. ~~No spam protection on the contact form~~ — [x] Added a honeypot field (`website`, visually hidden, `tabIndex={-1}`) to `ContactForm` and a server-side check in `/api/contact` that silently accepts-but-drops any submission where it's filled. Verified both directions: a real submission (field empty) still logs and succeeds; a simulated bot submission (field filled) returns 200 but is never logged as an inquiry.
+7. ~~Custom 404 page~~ — [x] `src/app/not-found.tsx`, on-brand copy, links to Systems/Case Studies/Contact/Home. Verified it renders (with the real header/footer) on any unknown route.
 
-### Deferred on purpose (per the Phase 1 strategy, not a gap)
-- **No case studies page** — intentional until there are real, named clients with real numbers to show. Do not fill this with placeholder/fake content.
-- **No blog/Insights section** — Phase 2 per the site strategy.
-- **No separate "Software Engineering" nav item or Industries page** — Phase 2, once case studies exist per vertical.
+### Case Studies page — added (rev 15), honestly
+- [x] `/case-studies` added to primary nav. Since there's still no real client work to show, it does **not** contain fake case studies — it explains plainly that nothing's published yet, shows the exact format every real one will follow (Problem → What we built → Outcome), and ends with a "be our first" CTA. This satisfies the request without breaking the no-fabricated-content rule the rest of the site already runs on.
+
+### On "also do phase 2" — a judgment call, flagging it rather than guessing
+Phase 2 in the original strategy specifically meant "give Software Engineering its own marketed nav page **once 3–5 real case studies exist**" — i.e., it was gated on the case studies that still don't exist. Building that page now would put the site in the position of marketing proof it doesn't have yet, which contradicts everything else built this way. I held off on that specific piece rather than force it — Software Engineering still has real, non-fabricated presence via `/systems#software-engineering` and the homepage. If "phase 2" meant something more specific (an Industries page, a blog, something else), say which and I'll take a fresh look — but I didn't want to guess and build something that quietly undercuts the honesty policy.
 
 ## Suggested next order of work
 1. Confirm domain ownership → deploy to Vercel → point DNS (this also switches Analytics on).
 2. Wire real email delivery on the contact route + set up the `hello@zentstech.com` mailbox.
-3. Add `sitemap.ts`/`robots.ts`, a simple contact-form honeypot, and a custom 404 page.
-4. Everything else (case studies, blog, Software Engineering page) waits for real client work per the phased plan.
+3. Everything else (real case studies replacing the placeholder page, a blog, a marketed Software Engineering page) waits for real client work per the phased plan.

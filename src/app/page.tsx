@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, Globe, Target, Activity
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/reveal";
-import { WorkflowDiagram } from "@/components/workflow-diagram";
+import { Workflow3DSection } from "@/components/workflow-3d-section";
 import { serviceCategories, lifecycle, pillarColorClasses } from "@/lib/site-data";
 
 const categoryIcons = { Bot, Workflow, Code2 };
@@ -101,7 +101,7 @@ export default function Home() {
             </h2>
           </Reveal>
           <div className="mx-auto mt-16 max-w-3xl">
-            <WorkflowDiagram />
+            <Workflow3DSection />
           </div>
         </div>
       </section>
