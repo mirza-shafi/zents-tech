@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ChatWidget } from "@/components/chat-widget";
 import { MotionProvider } from "@/components/motion-provider";
 import { siteUrl } from "@/lib/site-data";
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <ChatWidget />
         </MotionProvider>
         <Analytics />
       </body>

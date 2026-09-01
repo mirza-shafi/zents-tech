@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
-import { contact } from "@/lib/site-data";
+import { contact, faqs } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -55,29 +55,6 @@ const nextSteps = [
   { title: "You reach out", detail: "Form, email, or WhatsApp — whichever's easiest. Tell us one manual process that's bothering you." },
   { title: "We reply personally", detail: "Within one business day, from an actual person who read what you wrote — not an autoresponder." },
   { title: "We scope an Audit", detail: "If it looks like a fit, the next step is usually a short, fixed-price Readiness Audit, not a sales pitch." },
-];
-
-const faqs = [
-  {
-    q: "Do you work with businesses outside Bangladesh?",
-    a: "Yes — that's by design. We price and deliver for both Bangladeshi and international clients, and most of our tooling is built to work with either market from day one.",
-  },
-  {
-    q: "What happens after I submit the form?",
-    a: "You get a reply from a real person, usually within one business day. Most first conversations turn into a scoped Audit before anything bigger.",
-  },
-  {
-    q: "I'm not sure what I actually need automated.",
-    a: "That's exactly what the Audit is for — a short, fixed-price look at one process that ends in a clear answer, not a bigger sales conversation.",
-  },
-  {
-    q: "How much does a typical project cost?",
-    a: "It depends on scope and market — see the Systems page for real BDT and USD ranges on every productized offer. Nothing on this site is a placeholder price.",
-  },
-  {
-    q: "Will you sign an NDA?",
-    a: "Yes, happily, before any deeper technical discussion involving your data or systems.",
-  },
 ];
 
 export default function ContactPage() {
