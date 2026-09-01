@@ -7,7 +7,7 @@ const WorkflowScene3D = dynamic(
   () => import("@/components/workflow-scene-3d").then((m) => m.WorkflowScene3D),
   {
     ssr: false,
-    loading: () => <div className="h-[240px] w-full sm:h-[300px] md:h-[380px]" />,
+    loading: () => <div className="h-[220px] w-full sm:h-[260px] md:h-[300px]" />,
   }
 );
 

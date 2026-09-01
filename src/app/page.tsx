@@ -98,14 +98,14 @@ export default function Home() {
 
       {/* Signature visual: manual task -> AI/automation -> your tools -> outcome */}
       <section className="border-b border-border">
-        <div className="container-page py-20">
-          <Reveal className="mx-auto max-w-xl text-center">
+        <div className="container-page py-16">
+          <Reveal className="text-center">
             <span className="eyebrow">How the work actually changes</span>
-            <h2 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
               Same task. Different shape.
             </h2>
           </Reveal>
-          <div className="mx-auto mt-16 max-w-3xl">
+          <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border bg-muted/20 px-6 py-8 sm:px-8 sm:py-10">
             <Workflow3DSection />
           </div>
         </div>
@@ -244,6 +244,31 @@ export default function Home() {
                 </Reveal>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join the team */}
+      <section className="border-b border-border bg-[var(--footer-bg)]">
+        <div className="container-page grid items-center gap-10 py-16 md:grid-cols-2 md:py-20">
+          <Reveal>
+            <h2 className="text-balance font-display text-4xl font-extrabold tracking-tight text-[var(--footer-fg)] md:text-5xl">
+              Join Our Team
+            </h2>
+            <p className="mt-4 max-w-md text-[var(--footer-muted)]">
+              We&rsquo;re small on purpose, but always open to talented
+              people who want real ownership — not a seat in a big org
+              chart.
+            </p>
+            <div className="mt-8">
+              <Button size="lg" nativeButton={false} render={<Link href="/career" />}>
+                Visit Career
+                <ArrowRight className="size-4" />
+              </Button>
+            </div>
+          </Reveal>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
+            <Image src="/images/join-team-office.jpg" alt="" fill className="object-cover" />
           </div>
         </div>
       </section>

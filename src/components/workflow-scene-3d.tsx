@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, Suspense } from "react";
+import { useRef, useMemo, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import * as THREE from "three";
@@ -36,6 +36,46 @@ function Node({ position, color }: NodeDef) {
   );
 }
 
+/** Small emissive spheres that loop from one node to the next, standing
+ * in for "data moving through the system" — fills the empty space
+ * between nodes with motion instead of bare connecting lines. */
+function FlowParticles({
+  from,
+  to,
+  color,
+  count = 3,
+}: {
+  from: [number, number, number];
+  to: [number, number, number];
+  color: string;
+  count?: number;
+}) {
+  const refs = useRef<(THREE.Mesh | null)[]>([]);
+  const a = useMemo(() => new THREE.Vector3(...from), [from]);
+  const b = useMemo(() => new THREE.Vector3(...to), [to]);
+
+  useFrame((state) => {
+    refs.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const phase = (state.clock.elapsedTime * 0.22 + i / count) % 1;
+      mesh.position.lerpVectors(a, b, phase);
+      const material = mesh.material as THREE.MeshStandardMaterial;
+      material.opacity = Math.sin(phase * Math.PI) * 0.9;
+    });
+  });
+
+  return (
+    <>
+      {Array.from({ length: count }).map((_, i) => (
+        <mesh key={i} ref={(el) => { refs.current[i] = el; }}>
+          <sphereGeometry args={[0.07, 10, 10]} />
+          <meshStandardMaterial color={color} emissive={color} emissiveIntensity={1.6} transparent opacity={0} />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
 function Rig({ reduceMotion }: { reduceMotion: boolean }) {
   const group = useRef<THREE.Group>(null);
   const pointerYaw = useRef(0);
@@ -65,6 +105,15 @@ function Rig({ reduceMotion }: { reduceMotion: boolean }) {
           opacity={0.6}
         />
       ))}
+      {!reduceMotion &&
+        workflowNodes.slice(0, -1).map((n, i) => (
+          <FlowParticles
+            key={`flow-${n.label}`}
+            from={n.position}
+            to={workflowNodes[i + 1].position}
+            color={workflowNodes[i + 1].color}
+          />
+        ))}
       {workflowNodes.map((n) => (
         <Node key={n.label} {...n} />
       ))}
@@ -86,7 +135,7 @@ export function WorkflowScene3D() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="h-[240px] w-full sm:h-[300px] md:h-[380px]">
+    <div className="h-[220px] w-full sm:h-[260px] md:h-[300px]">
       <Canvas
         dpr={[1, 1.75]}
         camera={{ position: [0, 0, 8.5], fov: 45 }}

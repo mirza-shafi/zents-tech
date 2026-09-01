@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 20)
+Last updated: 2026-09-01 (rev 22)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -194,6 +194,23 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Built as a plain server component (`src/components/tech-marquee.tsx`) with a pure-CSS marquee animation (`animate-marquee-left` / `-right` in `globals.css`) — no client-side JS, no `useReducedMotion` hook needed; reduced motion is handled by a `prefers-reduced-motion` media query that freezes the animation, the same pattern already used for the hero's background pan.
 - [x] Verified in-browser: both rows scroll continuously in opposite directions, edges fade via a mask-image gradient, renders correctly on mobile (375px) too.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 21 (this session) — filled out the empty-feeling 3D workflow section
+
+- [x] **You flagged the "Same task. Different shape." section as feeling empty** ("faka faka lagteche") — the 3D nodes floated in a lot of bare white space with nothing else going on around them.
+- [x] **Contained the visual in a panel** instead of letting it float on the plain page background: a rounded, bordered card using the same `bg-hero-glow` gradient + `bg-dot-grid` pattern already established on the Contact page hero — reused, not reinvented, so the site doesn't pick up a fourth background treatment.
+- [x] **Added animated "data flow" particles** along the connecting lines between the 3D nodes (`FlowParticles` in `workflow-scene-3d.tsx`) — small glowing spheres that continuously travel from one node to the next, colored by the destination node, fading in/out at each end. Fills the empty space between nodes with motion that actually reinforces the "work moving through a system" idea, instead of decoration for its own sake. Skipped entirely under reduced motion.
+- [x] Enlarged the canvas (`240–380px` tall → `280–420px`) and the node geometry slightly, so the visual has more presence inside its new panel.
+- [x] Verified in-browser at mobile, standard desktop, and 1440px — panel scales cleanly at all three, particles visibly animate between screenshots taken a few seconds apart, node left-to-right order still matches the labels underneath (the ordering fix from rev 16 still holds).
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 22 (this session) — undid the gradient, made it compact, one-line heading
+
+- [x] **The rev 21 gradient/dot-grid panel looked worse, not better** (your call) — removed `bg-hero-glow` and the dot-grid overlay entirely. The panel is now a plain bordered card (`border border-border bg-muted/20`), no color wash.
+- [x] **More compact overall**: section padding `py-20 → py-16`, gap before the panel `mt-12 → mt-8`, panel padding `py-14/16 → py-8/10`, panel width `max-w-4xl → max-w-3xl`, canvas height back down (`280–420px → 220–300px`, and the node geometry with it) — the rev 21 sizing was overcorrected.
+- [x] **"Same task. Different shape." now sits on one line** on tablet/desktop — the heading was wrapping because its wrapper had a `max-w-xl` cap (576px) that was too narrow for the phrase at the bumped-up rev 19 font size, not because of the font size itself. Removed that cap; it still wraps naturally on narrow phones, same as every other heading on the site does, since there's no way to guarantee one line at 375px without shrinking the font back down.
+- [x] Kept the flow-particle animation from rev 21 — that part wasn't the complaint.
+- [x] Verified in-browser on desktop and mobile; `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
