@@ -85,7 +85,7 @@ export default function ContactPage() {
     <>
       <section className="relative overflow-hidden border-b border-border bg-hero-glow">
         <div className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.55] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
-        <div className="container-page relative grid gap-12 py-16 md:grid-cols-[1fr_1fr] md:py-20">
+        <div className="container-page relative grid items-start gap-12 py-16 md:grid-cols-[1fr_1fr] md:py-20">
           <Reveal>
             <span className="eyebrow">Contact</span>
             <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
@@ -140,6 +140,10 @@ export default function ContactPage() {
           <Card>
             <CardContent>
               <ContactForm />
+              <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
+                No auto-replies, no sales queue — a real person reads this and
+                writes back within one business day.
+              </p>
             </CardContent>
           </Card>
         </div>

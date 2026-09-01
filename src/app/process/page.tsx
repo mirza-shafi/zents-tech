@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
+import { ProcessTimeline } from "@/components/process-timeline";
 import { lifecycle } from "@/lib/site-data";
 import { slugify } from "@/lib/utils";
 
@@ -40,6 +41,13 @@ const detail: Record<string, string[]> = {
   ],
 };
 
+const steps = lifecycle.map((stage) => ({
+  slug: slugify(stage.step),
+  step: stage.step,
+  detail: stage.detail,
+  points: detail[stage.step] ?? [],
+}));
+
 export default function ProcessPage() {
   return (
     <>
@@ -61,36 +69,7 @@ export default function ProcessPage() {
 
       <section>
         <div className="container-page py-16 md:py-20">
-          <div className="relative">
-            <div className="absolute top-0 bottom-0 left-[15px] hidden w-px bg-border md:block" />
-            <div className="flex flex-col gap-10">
-              {lifecycle.map((stage, i) => (
-                <div
-                  key={stage.step}
-                  id={slugify(stage.step)}
-                  className="relative flex scroll-mt-24 gap-6 md:gap-8"
-                >
-                  <div className="relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border border-primary bg-background font-mono text-xs font-semibold text-primary">
-                    {i + 1}
-                  </div>
-                  <div className="pb-2">
-                    <h2 className="font-display text-xl font-bold">{stage.step}</h2>
-                    <p className="mt-1 text-sm text-muted-foreground">{stage.detail}</p>
-                    <ul className="mt-3 flex flex-col gap-1.5">
-                      {detail[stage.step]?.map((line) => (
-                        <li
-                          key={line}
-                          className="text-sm leading-relaxed text-foreground/80 before:mr-2 before:text-primary before:content-['—']"
-                        >
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProcessTimeline steps={steps} />
 
           <div className="mt-14 flex justify-center">
             <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
