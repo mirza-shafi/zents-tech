@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 35)
+Last updated: 2026-09-01 (rev 36)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -321,6 +321,13 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Diagnosed why clicks weren't landing**: the rev 34 fix only made the heading text itself a link — verified with `document.elementFromPoint` that the link markup was technically correct and a click exactly on the heading text did navigate, but that's a small, easy-to-miss target. Clicking the icon, tag, description, or checklist (most of the visible card) did nothing, which is what you were actually running into.
 - [x] **Widened the whole left column of each category card into one link** — icon, tag, heading, description, and the feature checklist are all now part of the same clickable area, plus an explicit "See full details →" line at the bottom so it's visually obvious where to click (same treatment as the homepage's system cards). The right-hand margin/entry/recurring panel stays a plain reference box, not part of the link.
 - [x] Verified with real clicks (not just DOM inspection) at multiple points across the card — description text, checklist area — all now navigate correctly to the matching detail page. Confirmed on desktop and mobile.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 36 (this session) — footer links were pointing at the old anchors, fixed
+
+- [x] You caught a real leftover bug: the footer's "What we build" list (`site-footer.tsx`) was still linking to `/systems#ai-systems` etc. — the old hash-anchor pattern from before the dedicated `/systems/[slug]` pages existed (rev 21 built the footer with this section, rev 28 added the dedicated pages later, and the footer link target never got updated to match).
+- [x] Changed all 3 to `/systems/${cat.slug}` so they go straight to the matching detail page instead of scrolling to that category's anchor on the overview page.
+- [x] Verified via DOM inspection (all 3 hrefs correct) and a real click through to `/systems/ai-systems`.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left

@@ -4,6 +4,7 @@ export const nav = [
   { href: "/systems", label: "Systems" },
   { href: "/process", label: "Process" },
   { href: "/case-studies", label: "Case Studies" },
+  { href: "/blog", label: "Blog" },
   { href: "/career", label: "Career" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
