@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { m, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 
 type Step = {
   slug: string;
@@ -14,21 +13,19 @@ const ACTIVE = { backgroundColor: "#0f766e", borderColor: "#0f766e", color: "#ff
 const IDLE = { backgroundColor: "#f6f8fb", borderColor: "#e2e7ef", color: "#5b6472" };
 
 export function ProcessTimeline({ steps }: { steps: Step[] }) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 0.75", "end 0.6"],
-  });
-  const fillScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       <div className="absolute top-0 bottom-0 left-[15px] hidden w-px bg-border md:block" />
       {!shouldReduceMotion && (
         <m.div
           className="absolute top-0 left-[15px] hidden w-px origin-top bg-primary md:block"
-          style={{ scaleY: fillScale, height: "100%" }}
+          style={{ height: "100%" }}
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         />
       )}
 
@@ -39,8 +36,8 @@ export function ProcessTimeline({ steps }: { steps: Step[] }) {
               className="relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-semibold"
               initial={shouldReduceMotion ? ACTIVE : IDLE}
               whileInView={ACTIVE}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.15 }}
             >
               {i + 1}
             </m.div>
@@ -48,7 +45,7 @@ export function ProcessTimeline({ steps }: { steps: Step[] }) {
               className="pb-2"
               initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.4 }}
             >
               <h2 className="font-display text-xl font-bold">{s.step}</h2>

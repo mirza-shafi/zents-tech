@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 13)
+Last updated: 2026-09-01 (rev 14)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -141,6 +141,13 @@ You sent real photos and real links for both founders, which changes the honesty
   - A **new FAQ accordion** (5 questions) covering the things people actually hesitate on before writing in — international clients, uncertainty about what to ask for, pricing (points to the real Systems page ranges, no invented numbers), NDAs — built with shadcn's Accordion component, already installed but unused until now
 - [x] Verified in-browser: contact cards link correctly, FAQ accordion opens/closes correctly, no console errors; `tsc`/`build`/`lint` clean.
 
+## Since rev 13 (this session) — contact form fix + Process page animation
+
+- [x] **Fixed the contact form card's empty space** you flagged in a screenshot — the two-column grid had no `items-start`, so CSS stretched the (shorter) form card to match the height of the (taller) left column, leaving dead space below the Send button. Added `items-start` and a small trust line under the form so the card now sizes to its own content properly.
+- [x] **Process page timeline is now animated** (`src/components/process-timeline.tsx`): the connecting line draws in once the timeline scrolls into view, and each numbered checkpoint fills from idle (gray) to active (teal) as it's individually scrolled past, with its content fading/sliding in alongside it.
+- [x] **Caught and fixed a real bug while verifying this**, not just a screenshot artifact this time: the first version used `viewport={{ margin: "-100px" }}` on the scroll triggers, and that negative-margin shorthand silently broke Motion's visibility detection — checkpoints never activated at all, confirmed via computed-style checks at multiple scroll positions. Removed the margin (matching the exact working pattern already used in the homepage's workflow diagram) and reverified with a simulated gradual scroll: all 6 checkpoints now activate correctly in sequence.
+- [x] `tsc`/`build`/`lint` all clean.
+
 ## Not done yet — what's left
 
 ### Blocking for launch
@@ -158,7 +165,6 @@ You sent real photos and real links for both founders, which changes the honesty
 - **No case studies page** — intentional until there are real, named clients with real numbers to show. Do not fill this with placeholder/fake content.
 - **No blog/Insights section** — Phase 2 per the site strategy.
 - **No separate "Software Engineering" nav item or Industries page** — Phase 2, once case studies exist per vertical.
-- **No founder bio/photo on About** — kept deliberately generic; add only with real content, not filler.
 
 ## Suggested next order of work
 1. Confirm domain ownership → deploy to Vercel → point DNS (this also switches Analytics on).
