@@ -49,45 +49,46 @@
 }
 
 /*
-  Zents Tech is a fixed dark-graphite brand system by design (see brand
-  strategy: "engineering-led, premium, not the default purple-blue AI
-  gradient"). One deliberate visual world, not a light/dark toggle.
+  Zents Tech is a fixed light, premium tech brand system by design — a cool
+  off-white page (#F6F8FB), pure white reserved for cards and elevated
+  surfaces, and a deep teal accent. One deliberate visual world, not a
+  light/dark toggle.
 */
 :root {
-  --background: #0d1113;
-  --foreground: #e9edee;
-  --card: #12171a;
-  --card-foreground: #e9edee;
-  --popover: #12171a;
-  --popover-foreground: #e9edee;
-  --primary: #58a9a6;
-  --primary-foreground: #06201f;
-  --secondary: #1b2225;
-  --secondary-foreground: #e9edee;
-  --muted: #171d20;
-  --muted-foreground: #909a9e;
-  --accent: #1b2225;
-  --accent-foreground: #58a9a6;
-  --destructive: #d4695a;
-  --border: #232b2e;
-  --input: #232b2e;
-  --ring: #58a9a6;
-  --brass: #c99a52;
-  --good: #6cb586;
-  --chart-1: #58a9a6;
-  --chart-2: #c99a52;
-  --chart-3: #6cb586;
-  --chart-4: #909a9e;
-  --chart-5: #d4695a;
+  --background: #f6f8fb;
+  --foreground: #12161c;
+  --card: #ffffff;
+  --card-foreground: #12161c;
+  --popover: #ffffff;
+  --popover-foreground: #12161c;
+  --primary: #0f766e;
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f6;
+  --secondary-foreground: #12161c;
+  --muted: #edf1f6;
+  --muted-foreground: #5b6472;
+  --accent: #e6f2f1;
+  --accent-foreground: #0f766e;
+  --destructive: #dc2626;
+  --border: #e2e7ef;
+  --input: #e2e7ef;
+  --ring: #0f766e;
+  --brass: #a9772f;
+  --good: #1f9d55;
+  --chart-1: #0f766e;
+  --chart-2: #a9772f;
+  --chart-3: #1f9d55;
+  --chart-4: #5b6472;
+  --chart-5: #dc2626;
   --radius: 0.5rem;
-  --sidebar: #12171a;
-  --sidebar-foreground: #e9edee;
-  --sidebar-primary: #58a9a6;
-  --sidebar-primary-foreground: #06201f;
-  --sidebar-accent: #1b2225;
-  --sidebar-accent-foreground: #e9edee;
-  --sidebar-border: #232b2e;
-  --sidebar-ring: #58a9a6;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #12161c;
+  --sidebar-primary: #0f766e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef1f6;
+  --sidebar-accent-foreground: #12161c;
+  --sidebar-border: #e2e7ef;
+  --sidebar-ring: #0f766e;
 }
 
 @layer base {

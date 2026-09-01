@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 2)
+Last updated: 2026-09-01 (rev 4)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -30,7 +30,25 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primiti
 - [x] Privacy Policy (`/privacy`) and Terms of Service (`/terms`) pages written — specific to what this site actually does (marketing site + contact form, Vercel hosting, Google Fonts, no accounts/payments), not generic boilerplate. **Not lawyer-reviewed — have someone check these before you rely on them, especially once real client contracts are involved.**
 - [x] Footer gained a "Legal" column linking both pages
 - [x] Vercel Analytics wired into the root layout (`@vercel/analytics`) — cookie-less, no consent banner needed. **Only actually collects data once deployed on Vercel**; it's inert on localhost and on other hosts.
-- [x] Real logo received from you — waiting on the source file to process (see below)
+
+## Since rev 2 (this session)
+
+- [x] Real logo processed: background removed from the source PNG (`public/logo.png`, since deleted — the studio-mockup gray background and drop shadow are gone, decontaminated edges, no white halo). Method documented in `scripts/process_logo.py` in case the source logo is ever replaced and this needs re-running.
+- [x] Favicon/icon set generated from the logo's arrow-through-N mark (the full wordmark is illegible at 16–32px, so just the mark is used): `src/app/favicon.ico`, `src/app/icon.png`, `src/app/apple-icon.png` — all auto-detected by Next.js's file-based convention, confirmed present in the page's `<head>`.
+- [x] Open Graph / Twitter share image generated from the full wordmark on the brand dark background: `src/app/opengraph-image.png` (1200×630) — also auto-picked-up by Next.js, confirmed in `og:image`/`twitter:image` meta tags.
+- [x] Header `Logo` component now renders the real icon mark (`public/icon-192.png`) next to the "Zents Tech" text, replacing the placeholder hand-drawn SVG mark used earlier.
+- [x] Removed the unused default Next.js starter assets (`next.svg`, `vercel.svg`, etc.) from `public/`.
+- [x] `npm run build` / `tsc --noEmit` / `npm run lint` all still pass clean; verified in-browser that the new header logo and all icon `<link>`/`<meta>` tags render correctly.
+
+## Since rev 3 (this session)
+
+- [x] **Full theme flip: dark → light.** Site was originally built as a fixed dark-graphite theme; switched to a fixed light theme per your request. New palette in `src/app/globals.css`:
+  - Page background: `#F6F8FB`
+  - Cards / elevated surfaces: pure white `#FFFFFF`, with a soft shadow added to the shared `Card` component so they visibly lift off the page background
+  - Text ink: `#12161C`; muted text: `#5B6472`; borders: `#E2E7EF`
+  - Accent kept in the same teal family as before (for continuity with buttons/links already in copy) but darkened to `#0F766E` for proper contrast on a light background
+- [x] Removed the hardcoded `dark` class from `<html>` in `src/app/layout.tsx` — the site has no light/dark toggle, so this is now just a single, deliberate light theme (matches how it was already built for dark, just flipped)
+- [x] Verified in-browser across Home, Systems, and Contact: hero, cards, pricing grid, form inputs, and footer all read cleanly on the new palette; no leftover hardcoded dark-mode colors found anywhere in the codebase (confirmed by search — every component already used the token system, so this was a CSS-only change)
 
 ## Not done yet — what's left
 
@@ -39,13 +57,11 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primiti
 2. **No real hosting/deployment.** Site only runs locally (`npm run dev`). Needs a deploy target — Vercel is the natural fit for Next.js and was the recommended stack (and is what Analytics above needs to actually turn on).
 3. **Contact form doesn't send real email.** `src/app/api/contact/route.ts` validates and logs to the server console only — there's a `TODO` in the file. Needs a real delivery mechanism (Resend, SES, or forwarding inbox) wired in with an API key before this goes live, or inquiries will silently go nowhere.
 4. **`hello@zentstech.com` isn't a real mailbox yet** (assumed placeholder throughout the site — footer, contact page, success message). Needs an actual inbox (Google Workspace / Zoho Mail / etc.) once the domain is live.
-5. **Logo/favicon still pending.** You shared the Zents Tech logo (dark blue "ZENTS" wordmark with the arrow-through-N mark, "Tech" underneath) and asked for the background removed before it's used as the favicon/watermark. I don't have the actual image file yet — a pasted screenshot in chat isn't saved to disk where I can process it. **Please save it as a file (e.g. drop it in `zents-tech/public/logo-source.png`) and tell me the path**, and I'll remove the background and generate the favicon + header/OG assets from it.
 
 ### Should do before announcing the site publicly
-6. **OG share image** — no social-share preview image exists yet; can be generated from the real logo once received.
-7. **No `robots.txt` / `sitemap.xml`.** Not set up yet — easy to add via `src/app/sitemap.ts` and `src/app/robots.ts`.
-8. **No spam protection on the contact form** — no honeypot, rate limiting, or CAPTCHA. Low risk at launch traffic but worth a simple honeypot field early.
-9. **Custom 404 page** — currently Next.js's default `not-found`.
+5. **No `robots.txt` / `sitemap.xml`.** Not set up yet — easy to add via `src/app/sitemap.ts` and `src/app/robots.ts`.
+6. **No spam protection on the contact form** — no honeypot, rate limiting, or CAPTCHA. Low risk at launch traffic but worth a simple honeypot field early.
+7. **Custom 404 page** — currently Next.js's default `not-found`.
 
 ### Deferred on purpose (per the Phase 1 strategy, not a gap)
 - **No case studies page** — intentional until there are real, named clients with real numbers to show. Do not fill this with placeholder/fake content.
@@ -54,8 +70,7 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primiti
 - **No founder bio/photo on About** — kept deliberately generic; add only with real content, not filler.
 
 ## Suggested next order of work
-1. Send over the logo source file so it can be processed into the favicon/OG assets.
-2. Confirm domain ownership → deploy to Vercel → point DNS (this also switches Analytics on).
-3. Wire real email delivery on the contact route + set up the `hello@zentstech.com` mailbox.
-4. Add `sitemap.ts`/`robots.ts`, a simple contact-form honeypot, and a custom 404 page.
-5. Everything else (case studies, blog, Software Engineering page) waits for real client work per the phased plan.
+1. Confirm domain ownership → deploy to Vercel → point DNS (this also switches Analytics on).
+2. Wire real email delivery on the contact route + set up the `hello@zentstech.com` mailbox.
+3. Add `sitemap.ts`/`robots.ts`, a simple contact-form honeypot, and a custom 404 page.
+4. Everything else (case studies, blog, Software Engineering page) waits for real client work per the phased plan.
