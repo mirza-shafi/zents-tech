@@ -1,9 +1,14 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/site-data";
+import { siteUrl, serviceCategories } from "@/lib/site-data";
 
 const routes = [
   { path: "", changeFrequency: "weekly" as const, priority: 1 },
   { path: "/systems", changeFrequency: "monthly" as const, priority: 0.9 },
+  ...serviceCategories.map((cat) => ({
+    path: `/systems/${cat.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
   { path: "/process", changeFrequency: "monthly" as const, priority: 0.7 },
   { path: "/case-studies", changeFrequency: "weekly" as const, priority: 0.8 },
   { path: "/career", changeFrequency: "monthly" as const, priority: 0.5 },

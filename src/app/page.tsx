@@ -212,26 +212,33 @@ export default function Home() {
               const colors = pillarColorClasses[cat.color];
               return (
                 <Reveal key={cat.name} delay={i * 0.08}>
-                  <Card className="flex h-full flex-col">
-                    <CardContent className="flex flex-1 flex-col">
-                      <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
-                        <Icon className="size-5" strokeWidth={1.75} />
-                      </div>
-                      <span className="eyebrow mt-4">{cat.tag}</span>
-                      <h3 className="mt-2 font-display text-xl font-bold">{cat.name}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                        {cat.description}
-                      </p>
-                      <ul className="mt-5 flex flex-1 flex-col gap-2.5">
-                        {cat.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm">
-                            <CheckCircle2 className={`mt-0.5 size-4 shrink-0 ${colors.icon}`} />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
+                  <Link href={`/systems/${cat.slug}`} className="group block h-full">
+                    <Card className="flex h-full flex-col transition-colors group-hover:border-primary/40">
+                      <CardContent className="flex flex-1 flex-col">
+                        <div className={`flex size-11 items-center justify-center rounded-full ${colors.badge}`}>
+                          <Icon className="size-5" strokeWidth={1.75} />
+                        </div>
+                        <span className="eyebrow mt-4">{cat.tag}</span>
+                        <h3 className="mt-2 font-display text-xl font-bold transition-colors group-hover:text-primary">
+                          {cat.name}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {cat.description}
+                        </p>
+                        <ul className="mt-5 flex flex-1 flex-col gap-2.5">
+                          {cat.items.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-sm">
+                              <CheckCircle2 className={`mt-0.5 size-4 shrink-0 ${colors.icon}`} />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <span className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-primary">
+                          See details <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </Reveal>
               );
             })}

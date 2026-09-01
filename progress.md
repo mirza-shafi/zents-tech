@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 27)
+Last updated: 2026-09-01 (rev 28)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -254,6 +254,19 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] **Used 5 real capabilities, not the reference's 6 generic dev-shop services** — AI Systems, Business Automation, Software Engineering (the same 3 pillars from elsewhere on the site), plus Diagnostics and Monthly Support, both real offerings that existed already in the process lifecycle but had never gotten their own icon+description callout on the homepage before. Nothing here is invented — "Staff Augmentation" and "Managed Services" from the reference aren't services Zents Tech offers, so they're not on this list.
 - [x] **Reused existing photos already in `public/images/`** (`code-screen.jpg`, `dashboard-metrics.jpg`, `about-workspace.jpg`, `join-team-office.jpg`) instead of sourcing new ones — all already vetted as generic/anonymous per the site's photo policy, and reusing them here keeps a consistent visual language across pages rather than introducing a sixth or seventh stock photo.
 - [x] Verified in-browser on desktop (1280px) and mobile (375px) — the checkerboard renders correctly and collapses to a single column on mobile; `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 28 (this session) — dedicated pages per system, linked from the homepage cards
+
+- [x] The homepage's "Three systems, not eight services" cards (AI Systems / Business Automation / Software Engineering) are now clickable — each links to its own dedicated page instead of going nowhere. Added a "See details" affordance and hover state so it reads as clickable.
+- [x] Built `src/app/systems/[slug]/page.tsx` — one dynamic route serving all 3 systems (`/systems/ai-systems`, `/systems/business-automation`, `/systems/software-engineering`), statically pre-rendered via `generateStaticParams`. Each page has:
+  - A hero with a real photo (`code-screen.jpg` / `dashboard-metrics.jpg` / `about-workspace.jpg` — already-vetted images reused from elsewhere on the site, no new sourcing) and an expanded intro paragraph.
+  - A "What's included" section — the same 4 real feature items already defined in `site-data.ts`, each given a short expanded explanation (written honestly, no new capabilities invented beyond what's already established sitewide).
+  - A **visualization**: `src/components/category-flow.tsx`, a connected step-flow diagram built directly from that category's own real feature list — deliberately not a fabricated "workflow story," just those same 4 items shown as connected steps instead of a bullet list.
+  - The category's real margin/entry-point/recurring figures (already in `site-data.ts`), and cross-links to the other two systems.
+- [x] **`/systems` (the overview page) is untouched**, exactly as requested — its own anchors, pricing table, and Diagnostics/productized-offers sections still work exactly as before. Verified by loading it fresh after these changes.
+- [x] Added the 3 new URLs to `sitemap.ts` (generated from `serviceCategories`, not hardcoded, so it stays correct if a category is ever added).
+- [x] Verified in-browser: clicking a homepage card navigates to the right detail page, the flow visualization renders correctly (and stacks vertically on mobile), cross-links between the 3 systems work, and the untouched `/systems` overview still renders exactly as before.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean — all 3 detail pages show up as statically pre-rendered (SSG) routes in the build output.
 
 ## Not done yet — what's left
 
