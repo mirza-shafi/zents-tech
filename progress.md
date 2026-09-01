@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 17)
+Last updated: 2026-09-01 (rev 19)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -157,12 +157,34 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Verified on mobile viewport (375px) too — canvas renders and nodes stay correctly ordered at the smaller size.
 - [x] `tsc` / `npm run build` / `npm run lint` all clean.
 
-## Since rev 17 (this session) — cursor-reactive glow on key sections
+## Since rev 17 (this session) — cursor-reactive glow on key sections — removed in rev 18, see below
 
 - [x] Added `src/components/cursor-glow.tsx`: a small client component that eases a soft radial glow toward the pointer within its parent section (rAF + lerp, not React state, so it doesn't cause re-renders). Skips itself entirely on touch devices (`matchMedia("(hover: hover) and (pointer: fine)")`) and under `prefers-reduced-motion` — no persistent cursor to react to either way, so it's a clean no-op rather than a degraded version.
 - [x] Wired into the **homepage hero** (`screen` blend, teal, brighter — reveals more of the background photo where the cursor moves without covering the text) and the **final CTA section** (plain blend, very low opacity — a faint spotlight on the light background, not a dark-theme effect forced onto a light one).
 - [x] Verified in-browser: glow fades in on first move, tracks the pointer to different points within each section, and fades out on `pointerleave`; text over the hero stays fully readable.
 - [x] `tsc` / `npm run lint` clean.
+
+## Since rev 18 (this session) — removed the cursor glow, animated the rest of the site instead
+
+- [x] **Removed the cursor-reactive glow from rev 17** (`src/components/cursor-glow.tsx` deleted, both usages in `src/app/page.tsx` removed) — you asked for it gone in favor of animating the site more broadly instead of one hover effect on two homepage sections.
+- [x] **Every page now uses the same scroll-reveal language the homepage already had** (`src/components/reveal.tsx` — fade + rise into view, once per element): extended it to sections that previously loaded in static, on Systems, Process, About, Career, Contact, and Case Studies. Grid/list items (service cards, founder cards, career reason/expectation/role cards, contact FAQ, productized offers, etc.) now stagger in with a small per-item delay instead of appearing all at once — the same pattern the homepage's service-category cards already used.
+- [x] Privacy and Terms pages get a single fade-in on their header block only — the dense legal text itself isn't chopped into individual scroll reveals, since animating every paragraph of a document people are trying to actually read works against them, not for them.
+- [x] Custom 404 page also fades in on load now.
+- [x] Verified anchor-jump links still work correctly after wrapping the Systems category cards in `Reveal` — navigating straight to `/systems#ai-systems` lands on a fully visible card, not a hidden one waiting to animate in.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean across all 18 routes. Spot-checked Home, Systems, and About in-browser — reveals and stagger fire correctly on scroll, no console errors.
+
+## Since rev 19 (this session) — bigger, more confident type scale (Brain Station 23 reference)
+
+- [x] **Checked brainstation-23.com's actual computed styles** (not just eyeballing) — their hero H1 runs 48px, and section H2s run 40px, both well above what most of our in-page section headers were using. Used that as the benchmark rather than guessing at "bigger."
+- [x] **Pushed every tier of the heading scale up one notch, sitewide** (Home, Systems, Process, About, Career, Contact, Case Studies, 404):
+  - Page hero H1: `text-4xl md:text-5xl` (36/48px) → `text-5xl md:text-6xl` (48/60px), plus `tracking-tighter` for a denser, more premium letterform at that size.
+  - Major section H2s (the ones with an eyebrow above them): `text-3xl md:text-4xl` → `text-4xl md:text-5xl`.
+  - In-page section headers that had no responsive bump at all — About's "Founders" / "What we believe" / etc., Career's five section headers — were the biggest gap versus the reference site (24px, static). Bumped to `text-3xl md:text-4xl`.
+  - Systems page's in-card category headings ("AI Systems", "Business Automation," "Diagnostics") got a smaller, proportionate bump (`text-2xl md:text-3xl`) since they share a compact two-column card with pricing detail, not a full-width section.
+- [x] **Left card-level and list-item titles alone on purpose** (founder names, principle titles, productized-service names, timeline step labels) — the reference site keeps the same contrast: huge section headlines against comparatively modest card content. Bumping everything uniformly would have flattened that hierarchy instead of making the site look more professional.
+- [x] Left Privacy/Terms headings untouched — legal pages intentionally stay plain, not part of the marketing type scale.
+- [x] Verified in-browser on desktop and mobile (375px) — headlines wrap cleanly with no overflow, `text-balance` still holds; confirmed via screenshots on Home, About, and Systems.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean across all 18 routes.
 
 ## Not done yet — what's left
 

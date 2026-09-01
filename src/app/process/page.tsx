@@ -55,7 +55,7 @@ export default function ProcessPage() {
         <div className="container-page py-16 md:py-20">
           <Reveal>
             <span className="eyebrow">Process</span>
-            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               The path from a diagnostic to a system you don&rsquo;t think about.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
@@ -71,12 +71,12 @@ export default function ProcessPage() {
         <div className="container-page py-16 md:py-20">
           <ProcessTimeline steps={steps} />
 
-          <div className="mt-14 flex justify-center">
+          <Reveal className="mt-14 flex justify-center">
             <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
               Start with an Audit
               <ArrowRight className="size-4" />
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

@@ -39,7 +39,7 @@ export default function CaseStudiesPage() {
         <div className="container-page py-16 md:py-20">
           <Reveal>
             <span className="eyebrow">Case Studies</span>
-            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               Nothing published here yet — on purpose.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -56,23 +56,25 @@ export default function CaseStudiesPage() {
         <div className="container-page py-16 md:py-20">
           <Reveal>
             <span className="eyebrow">What goes here</span>
-            <h2 className="mt-3 max-w-xl text-balance font-display text-2xl font-extrabold tracking-tight md:text-3xl">
+            <h2 className="mt-3 max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               The format every case study will follow.
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
-            {format.map((f) => {
+            {format.map((f, i) => {
               const Icon = f.icon;
               return (
-                <Card key={f.title}>
-                  <CardContent>
-                    <div className={`flex size-10 items-center justify-center rounded-full ${f.cls}`}>
-                      <Icon className="size-5" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-4 font-display text-base font-bold">{f.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                  </CardContent>
-                </Card>
+                <Reveal key={f.title} delay={i * 0.08}>
+                  <Card>
+                    <CardContent>
+                      <div className={`flex size-10 items-center justify-center rounded-full ${f.cls}`}>
+                        <Icon className="size-5" strokeWidth={1.75} />
+                      </div>
+                      <h3 className="mt-4 font-display text-base font-bold">{f.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                    </CardContent>
+                  </Card>
+                </Reveal>
               );
             })}
           </div>
@@ -81,19 +83,21 @@ export default function CaseStudiesPage() {
 
       <section>
         <div className="container-page py-16 text-center md:py-20">
-          <h2 className="mx-auto max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
-            Want to be the first one on this page?
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Early clients get more attention, not less — you&rsquo;d be one of
-            a handful of engagements, not client #400.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
-              Start with an Audit
-              <ArrowRight className="size-4" />
-            </Button>
-          </div>
+          <Reveal>
+            <h2 className="mx-auto max-w-xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              Want to be the first one on this page?
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+              Early clients get more attention, not less — you&rsquo;d be one of
+              a handful of engagements, not client #400.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
+                Start with an Audit
+                <ArrowRight className="size-4" />
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/reveal";
 
 const links = [
   { href: "/systems", label: "Systems" },
@@ -11,9 +12,9 @@ const links = [
 export default function NotFound() {
   return (
     <section className="flex min-h-[70vh] items-center">
-      <div className="container-page py-16 text-center">
+      <Reveal as="div" className="container-page py-16 text-center">
         <span className="font-mono text-sm text-muted-foreground">404</span>
-        <h1 className="mt-3 text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+        <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
           This page doesn&rsquo;t exist — a broken link, most likely.
         </h1>
         <p className="mx-auto mt-4 max-w-md text-muted-foreground">
@@ -33,7 +34,7 @@ export default function NotFound() {
             <ArrowRight className="size-4" />
           </Button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

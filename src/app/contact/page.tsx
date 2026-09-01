@@ -88,7 +88,7 @@ export default function ContactPage() {
         <div className="container-page relative grid items-start gap-12 py-16 md:grid-cols-[1fr_1fr] md:py-20">
           <Reveal>
             <span className="eyebrow">Contact</span>
-            <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h1 className="mt-3 text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               Tell us what&rsquo;s manual today.
             </h1>
             <p className="mt-5 max-w-md text-lg text-muted-foreground">
@@ -153,13 +153,13 @@ export default function ContactPage() {
         <div className="container-page py-16 md:py-20">
           <Reveal>
             <span className="eyebrow">What happens next</span>
-            <h2 className="mt-3 max-w-xl text-balance font-display text-2xl font-extrabold tracking-tight md:text-3xl">
+            <h2 className="mt-3 max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               No portal, no queue — just a conversation.
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-8 sm:grid-cols-3">
             {nextSteps.map((step, i) => (
-              <div key={step.title} className="flex gap-4">
+              <Reveal key={step.title} delay={i * 0.08} className="flex gap-4">
                 <span className="font-mono text-sm text-muted-foreground/70">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <h3 className="font-display text-base font-bold">{step.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -175,20 +175,24 @@ export default function ContactPage() {
 
       <section>
         <div className="container-page max-w-2xl py-16 md:py-20">
-          <span className="eyebrow">FAQ</span>
-          <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight md:text-3xl">
-            Before you write in
-          </h2>
-          <Accordion className="mt-8">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={faq.q} value={String(i)}>
-                <AccordionTrigger className="text-base font-semibold">{faq.q}</AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-muted-foreground">{faq.a}</p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <Reveal>
+            <span className="eyebrow">FAQ</span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              Before you write in
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Accordion className="mt-8">
+              {faqs.map((faq, i) => (
+                <AccordionItem key={faq.q} value={String(i)}>
+                  <AccordionTrigger className="text-base font-semibold">{faq.q}</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">{faq.a}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </section>
     </>

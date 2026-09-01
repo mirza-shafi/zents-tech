@@ -85,7 +85,7 @@ export default function CareerPage() {
         <div className="container-page grid items-center gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <Reveal>
             <span className="eyebrow">Career</span>
-            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               Build the systems, not just ship the work.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -103,17 +103,21 @@ export default function CareerPage() {
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            Why join this early
-          </h2>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              Why join this early
+            </h2>
+          </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {reasons.map((r) => (
-              <Card key={r.title}>
-                <CardContent>
-                  <h3 className="font-display text-base font-bold">{r.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
-                </CardContent>
-              </Card>
+            {reasons.map((r, i) => (
+              <Reveal key={r.title} delay={i * 0.08}>
+                <Card>
+                  <CardContent>
+                    <h3 className="font-display text-base font-bold">{r.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -121,21 +125,25 @@ export default function CareerPage() {
 
       <section className="border-b border-border bg-muted/30">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            What you can expect
-          </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            We&rsquo;d rather tell you plainly what&rsquo;s actually true at
-            this stage than list perks we don&rsquo;t have.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              What you can expect
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              We&rsquo;d rather tell you plainly what&rsquo;s actually true at
+              this stage than list perks we don&rsquo;t have.
+            </p>
+          </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {expectations.map((e) => (
-              <Card key={e.title}>
-                <CardContent>
-                  <h3 className="font-display text-base font-bold">{e.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{e.body}</p>
-                </CardContent>
-              </Card>
+            {expectations.map((e, i) => (
+              <Reveal key={e.title} delay={i * 0.08}>
+                <Card>
+                  <CardContent>
+                    <h3 className="font-display text-base font-bold">{e.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{e.body}</p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -143,18 +151,20 @@ export default function CareerPage() {
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            How we work
-          </h2>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              How we work
+            </h2>
+          </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {values.map((v) => (
-              <div key={v.title} className="flex items-start gap-3">
+            {values.map((v, i) => (
+              <Reveal key={v.title} delay={i * 0.06} className="flex items-start gap-3">
                 <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" />
                 <div>
                   <h3 className="font-display text-sm font-bold">{v.title}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{v.body}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -162,21 +172,25 @@ export default function CareerPage() {
 
       <section className="border-b border-border bg-muted/30">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            Who we want to hear from
-          </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            No fixed openings right now — these are the kinds of people we&rsquo;d
-            want to talk to whenever the next hire happens.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              Who we want to hear from
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              No fixed openings right now — these are the kinds of people we&rsquo;d
+              want to talk to whenever the next hire happens.
+            </p>
+          </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {roles.map((r) => (
-              <Card key={r.title}>
-                <CardContent>
-                  <h3 className="font-display text-base font-bold">{r.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
-                </CardContent>
-              </Card>
+            {roles.map((r, i) => (
+              <Reveal key={r.title} delay={i * 0.08}>
+                <Card>
+                  <CardContent>
+                    <h3 className="font-display text-base font-bold">{r.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -184,12 +198,14 @@ export default function CareerPage() {
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            How it actually works
-          </h2>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              How it actually works
+            </h2>
+          </Reveal>
           <div className="mt-10 flex flex-col gap-8">
             {process.map((p, i) => (
-              <div key={p.step} className="flex gap-5">
+              <Reveal key={p.step} delay={i * 0.08} className="flex gap-5">
                 <span className="font-mono text-sm text-muted-foreground/70">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -197,7 +213,7 @@ export default function CareerPage() {
                   <h3 className="font-display text-base font-bold">{p.step}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -205,27 +221,29 @@ export default function CareerPage() {
 
       <section>
         <div className="container-page py-16 text-center md:py-20">
-          <h2 className="mx-auto max-w-xl text-balance font-display text-3xl font-extrabold tracking-tight md:text-4xl">
-            No portal, no forms that go nowhere — just email us.
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Send your resume and a link to something you&rsquo;ve built to{" "}
-            <a href={`mailto:${contact.email}`} className="text-primary underline underline-offset-2">
-              {contact.email}
-            </a>{" "}
-            with &ldquo;Career&rdquo; in the subject, plus a couple of lines
-            on what you&rsquo;d actually want to work on here.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button
-              size="lg"
-              nativeButton={false}
-              render={<a href={`mailto:${contact.email}?subject=Career%20at%20Zents%20Tech`} />}
-            >
-              Email your resume
-              <ArrowRight className="size-4" />
-            </Button>
-          </div>
+          <Reveal>
+            <h2 className="mx-auto max-w-xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+              No portal, no forms that go nowhere — just email us.
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+              Send your resume and a link to something you&rsquo;ve built to{" "}
+              <a href={`mailto:${contact.email}`} className="text-primary underline underline-offset-2">
+                {contact.email}
+              </a>{" "}
+              with &ldquo;Career&rdquo; in the subject, plus a couple of lines
+              on what you&rsquo;d actually want to work on here.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button
+                size="lg"
+                nativeButton={false}
+                render={<a href={`mailto:${contact.email}?subject=Career%20at%20Zents%20Tech`} />}
+              >
+                Email your resume
+                <ArrowRight className="size-4" />
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

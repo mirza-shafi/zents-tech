@@ -66,7 +66,7 @@ export default function AboutPage() {
         <div className="container-page grid items-center gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <Reveal>
             <span className="eyebrow">About</span>
-            <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+            <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl font-extrabold tracking-tighter md:text-6xl">
               A small studio, on purpose.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -90,8 +90,8 @@ export default function AboutPage() {
 
       <section className="border-b border-border">
         <div className="container-page grid gap-10 py-16 md:grid-cols-2 md:py-20">
-          <div>
-            <h2 className="font-display text-2xl font-extrabold tracking-tight">
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               Why we started here
             </h2>
             <p className="mt-4 text-muted-foreground">
@@ -107,9 +107,9 @@ export default function AboutPage() {
               first real system, and international businesses that need the
               same engineering discipline at a fair price.
             </p>
-          </div>
-          <div>
-            <h2 className="font-display text-2xl font-extrabold tracking-tight">
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
               Where we are today
             </h2>
             <p className="mt-4 text-muted-foreground">
@@ -123,18 +123,21 @@ export default function AboutPage() {
               As we deliver, we publish real outcomes with real numbers —
               nothing else goes on this site.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            Founders
-          </h2>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              Founders
+            </h2>
+          </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {founders.map((person) => (
-              <Card key={person.name}>
+            {founders.map((person, i) => (
+              <Reveal key={person.name} delay={i * 0.08}>
+              <Card>
                 <CardContent className="flex gap-5">
                   <div className="relative size-20 shrink-0 overflow-hidden rounded-full border border-border">
                     <Image
@@ -180,6 +183,7 @@ export default function AboutPage() {
                   </div>
                 </CardContent>
               </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -187,28 +191,32 @@ export default function AboutPage() {
 
       <section>
         <div className="container-page py-16 md:py-20">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight">
-            What we believe
-          </h2>
+          <Reveal>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">
+              What we believe
+            </h2>
+          </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {principles.map((p) => (
-              <Card key={p.title}>
-                <CardContent>
-                  <h3 className="font-display text-base font-bold">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {p.body}
-                  </p>
-                </CardContent>
-              </Card>
+            {principles.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.08}>
+                <Card>
+                  <CardContent>
+                    <h3 className="font-display text-base font-bold">{p.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {p.body}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
 
-          <div className="mt-14 flex justify-center">
+          <Reveal className="mt-14 flex justify-center">
             <Button size="lg" nativeButton={false} render={<Link href="/contact" />}>
               Get in touch
               <ArrowRight className="size-4" />
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

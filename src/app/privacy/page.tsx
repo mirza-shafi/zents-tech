@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/reveal";
 import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -10,13 +11,15 @@ export default function PrivacyPage() {
   return (
     <section>
       <div className="container-page max-w-3xl py-16 md:py-20">
-        <span className="eyebrow">Legal</span>
-        <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight">
-          Privacy Policy
-        </h1>
-        <p className="mt-3 font-mono text-xs text-muted-foreground">
-          Last updated: September 1, 2026
-        </p>
+        <Reveal>
+          <span className="eyebrow">Legal</span>
+          <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight">
+            Privacy Policy
+          </h1>
+          <p className="mt-3 font-mono text-xs text-muted-foreground">
+            Last updated: September 1, 2026
+          </p>
+        </Reveal>
 
         <div className="prose-legal mt-10 flex flex-col gap-8 text-[15px] leading-relaxed text-foreground/90">
           <div>
