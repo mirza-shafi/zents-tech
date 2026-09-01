@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, Globe, Target, Activity, Layers } from "lucide-react";
+import { ArrowRight, CheckCircle2, Bot, Workflow, Code2, FileSearch, Globe, Target, Activity, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/reveal";
@@ -9,6 +9,50 @@ import { TechMarquee } from "@/components/tech-marquee";
 import { serviceCategories, lifecycle, pillarColorClasses } from "@/lib/site-data";
 
 const categoryIcons = { Bot, Workflow, Code2 };
+
+const capabilities = [
+  {
+    icon: Bot,
+    title: "AI Systems",
+    desc: "Agents and assistants wired into how your business actually operates, not a chatbot bolted onto a website.",
+  },
+  {
+    icon: Workflow,
+    title: "Business Automation",
+    desc: "The workflows and integrations that connect the tools you already run, so nothing falls through a spreadsheet.",
+  },
+  {
+    icon: Code2,
+    title: "Software Engineering",
+    desc: "Internal tools and dashboards for when no off-the-shelf software fits how you actually work.",
+  },
+  {
+    icon: FileSearch,
+    title: "Diagnostics",
+    desc: "A scoped, fixed-price audit that tells you what's actually worth automating before you commit to a build.",
+  },
+  {
+    icon: Activity,
+    title: "Monthly Support",
+    desc: "Monitoring and fixing what breaks when a third-party API changes, before your customer notices.",
+  },
+];
+
+const capabilityPhotos = [
+  "/images/code-screen.jpg",
+  "/images/dashboard-metrics.jpg",
+  "/images/about-workspace.jpg",
+  "/images/join-team-office.jpg",
+];
+
+// Interleaved checkerboard order: text, photo, text, photo, ... — five
+// capabilities, four photos slotted between them.
+const capabilityCells: ({ kind: "text"; cap: (typeof capabilities)[number] } | { kind: "photo"; src: string })[] =
+  capabilities.flatMap((cap, i) =>
+    i < capabilityPhotos.length
+      ? [{ kind: "text" as const, cap }, { kind: "photo" as const, src: capabilityPhotos[i] }]
+      : [{ kind: "text" as const, cap }]
+  );
 
 export default function Home() {
   return (
@@ -93,6 +137,42 @@ export default function Home() {
               can&rsquo;t show you yet.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Core capabilities — checkerboard of the 5 real things we do, with photos woven in */}
+      <section className="border-b border-border">
+        <div className="container-page py-16">
+          <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <span className="eyebrow">Core capabilities</span>
+              <h2 className="mt-3 max-w-lg text-balance font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+                Five ways we take work off your plate.
+              </h2>
+            </div>
+            <Link
+              href="/systems"
+              className="flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+            >
+              Explore all systems <ArrowRight className="size-4" />
+            </Link>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {capabilityCells.map((cell, i) =>
+              cell.kind === "text" ? (
+                <Reveal key={cell.cap.title} delay={(i % 6) * 0.06}>
+                  <cell.cap.icon className="size-9 text-primary" strokeWidth={1.5} />
+                  <h3 className="mt-4 font-display text-xl font-bold">{cell.cap.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{cell.cap.desc}</p>
+                </Reveal>
+              ) : (
+                <Reveal key={cell.src} delay={(i % 6) * 0.06} className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                  <Image src={cell.src} alt="" fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
+                </Reveal>
+              )
+            )}
+          </div>
         </div>
       </section>
 
