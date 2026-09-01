@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 25)
+Last updated: 2026-09-01 (rev 26)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -235,6 +235,19 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Verified at 1280px, 1440px, and mobile (375px) — no overflow or clipping at any size, site-wide (shared footer component).
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
+## Since rev 26 (this session) — real AI chat widget, wired for a key you'll add later
+
+- [x] Added a floating chat widget, site-wide (`src/components/chat-widget.tsx`, mounted in the root layout) — a round button bottom-right, opens a real chat panel with message history, starter-question buttons, and free-text input.
+- [x] **Went through two design changes before landing here, on your direction**: first built a no-AI, rule-based FAQ widget (button-only, no free text). You then said you actually want a real AI chatbot, so it was rebuilt as this one — but you also said to wire it up now and add the real API key later, and to keep it answering a fixed set of questions correctly in the meantime.
+- [x] `src/app/api/chat/route.ts` is built to do both, depending on one env var:
+  - **No `ANTHROPIC_API_KEY` set (current state)**: matches the visitor's message against a small set of curated trigger phrases per FAQ topic (pricing, NDA, international clients, etc.) and returns the real pre-written answer from the site's FAQ. If nothing matches, it says so honestly and points to email/WhatsApp — it never guesses.
+  - **Once `ANTHROPIC_API_KEY` is set**: the same route calls Claude (`claude-haiku-4-5-20251001`) with a system prompt built from the site's own real data (services, productized offers with real BDT/USD pricing, the process lifecycle, contact info, FAQs) and explicit instructions never to invent client names, team size, or prices beyond what's given. No other code changes needed to go live — just add the key.
+  - **To go live with real AI**: add `ANTHROPIC_API_KEY=sk-ant-...` to `.env.local` (get a key from console.anthropic.com — this is billed per API usage, separate from any Claude subscription). I didn't ask you to paste a key into chat and never will; you add it directly to the file or your hosting provider's environment variables when you're ready.
+  - **Caught a real bug while testing the fallback**: the first version scored FAQ matches by any shared word over 3 letters, which meant generic words like "what" or "does" caused it to confidently return the wrong pre-written answer (asking about automation pricing matched the "what happens after you submit the form" FAQ, purely because both sentences contained "what"). Replaced that with curated trigger phrases per topic and verified: a pricing question now matches the pricing FAQ, and a genuinely unrelated question ("what's the weather today?") gets the honest "I don't have an answer for that" reply instead of a confident wrong one.
+- [x] Moved the FAQ content (`faqs`) into `src/lib/site-data.ts` as a shared source of truth — both the Contact page's FAQ accordion and the chat widget now read from the same array instead of duplicating it.
+- [x] Fixed an unrelated minor warning noticed in the dev server logs while testing this: the homepage's "Join Our Team" photo was missing the `sizes` prop Next.js's Image component wants for a `fill` image.
+- [x] Verified in-browser: opening the widget, clicking a starter question, typing a free-text question, and an off-topic question all behave correctly in fallback mode; confirmed on desktop. `tsc` / `npm run lint` / `npm run build` all clean, `/api/chat` shows up as a registered dynamic route in the build output.
+
 ## Not done yet — what's left
 
 ### Blocking for launch
@@ -242,6 +255,7 @@ You sent real photos and real links for both founders, which changes the honesty
 2. **No real hosting/deployment.** Site only runs locally (`npm run dev`). Needs a deploy target — Vercel is the natural fit for Next.js and was the recommended stack (and is what Analytics above needs to actually turn on).
 3. **Contact form doesn't send real email.** `src/app/api/contact/route.ts` validates and logs to the server console only — there's a `TODO` in the file. Needs a real delivery mechanism (Resend, SES, or forwarding inbox) wired in with an API key before this goes live, or inquiries will silently go nowhere.
 4. **`hello@zentstech.com` isn't a real mailbox yet** (assumed placeholder throughout the site — footer, contact page, success message). Needs an actual inbox (Google Workspace / Zoho Mail / etc.) once the domain is live.
+5. **Chat widget is running in fallback mode, not real AI, until you add a key.** Not strictly blocking — the fallback gives honest, correct answers to real questions — but if you want the "real AI chatbot" experience live, add `ANTHROPIC_API_KEY` to `.env.local` (or your host's env vars). See rev 26 above for exactly what changes when you do.
 
 ### Should do before announcing the site publicly — DONE (rev 15)
 5. ~~No `robots.txt` / `sitemap.xml`~~ — [x] Added `src/app/sitemap.ts` (9 real routes, correct priorities) and `src/app/robots.ts` (allows everything except `/api/`, points at the sitemap). Verified both render correctly at `/sitemap.xml` and `/robots.txt`.

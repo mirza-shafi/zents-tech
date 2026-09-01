@@ -268,7 +268,13 @@ export default function Home() {
             </div>
           </Reveal>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
-            <Image src="/images/join-team-office.jpg" alt="" fill className="object-cover" />
+            <Image
+              src="/images/join-team-office.jpg"
+              alt=""
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>

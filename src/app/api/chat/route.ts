@@ -58,13 +58,13 @@ function fallbackAnswer(message: string): string {
   const normalized = message.toLowerCase();
   let best: { score: number; a: string } | null = null;
 
-  faqs.forEach((f, i) => {
+  for (const [i, f] of faqs.entries()) {
     const triggers = fallbackTriggers[i] ?? [];
     const score = triggers.filter((t) => normalized.includes(t)).length;
     if (score > 0 && (!best || score > best.score)) {
       best = { score, a: f.a };
     }
-  });
+  }
 
   if (best) return best.a;
 
