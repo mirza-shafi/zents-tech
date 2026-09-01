@@ -41,17 +41,30 @@ Questions already answered on the site's FAQ:
 ${faqText}`;
 }
 
+// Curated trigger phrases per FAQ (by index into `faqs`) — deliberately
+// not derived from the question text itself, since generic shared words
+// ("what", "does", "have") caused false-positive matches on unrelated
+// questions. A miss here should fall through to the honest "I don't
+// know" reply rather than confidently returning the wrong answer.
+const fallbackTriggers: string[][] = [
+  ["outside bangladesh", "international client", "abroad", "other countr", "overseas", "usa", " uk ", "outside dhaka"],
+  ["after i submit", "after submitting", "after the form", "what happens next", "after i send"],
+  ["not sure what", "don't know what", "which service", "what do i need", "not sure i need"],
+  ["cost", "price", "pricing", "how much", "budget", "expensive", "cheap", "fee"],
+  ["nda", "non-disclosure", "non disclosure", "confidential"],
+];
+
 function fallbackAnswer(message: string): string {
   const normalized = message.toLowerCase();
   let best: { score: number; a: string } | null = null;
 
-  for (const f of faqs) {
-    const words = f.q.toLowerCase().split(/\W+/).filter((w) => w.length > 3);
-    const score = words.filter((w) => normalized.includes(w)).length;
+  faqs.forEach((f, i) => {
+    const triggers = fallbackTriggers[i] ?? [];
+    const score = triggers.filter((t) => normalized.includes(t)).length;
     if (score > 0 && (!best || score > best.score)) {
       best = { score, a: f.a };
     }
-  }
+  });
 
   if (best) return best.a;
 
