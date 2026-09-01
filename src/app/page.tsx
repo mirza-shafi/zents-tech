@@ -57,8 +57,8 @@ const capabilityCells: ({ kind: "text"; cap: (typeof capabilities)[number] } | {
 export default function Home() {
   return (
     <>
-      {/* Hero — full-bleed background photo with a slow left-right drift */}
-      <section className="relative flex min-h-[620px] items-center overflow-hidden border-b border-border md:min-h-[680px]">
+      {/* Hero — banner-height background photo, not full viewport */}
+      <section className="relative overflow-hidden border-b border-border">
         <Image
           src="/images/hero-workspace.jpg"
           alt=""
@@ -69,7 +69,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        <div className="container-page relative grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
+        <div className="container-page relative grid gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-20">
           <Reveal>
             <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
               AI Systems &amp; Business Automation

@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 36)
+Last updated: 2026-09-01 (rev 37)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -329,6 +329,16 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Changed all 3 to `/systems/${cat.slug}` so they go straight to the matching detail page instead of scrolling to that category's anchor on the overview page.
 - [x] Verified via DOM inspection (all 3 hrefs correct) and a real click through to `/systems/ai-systems`.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 37 (this session) — added a real blog, 7 posts
+
+- [x] Added `/blog` (listing) and `/blog/[slug]` (7 statically-generated posts), and added **Blog** to the main nav — appears in the header, mobile nav sheet, and footer bottom-links automatically since all three already read from the shared `nav` array in `site-data.ts`.
+- [x] **A judgment call on how to write these honestly**: a blog is different from the case studies page — case studies require a specific, verifiable client result, which doesn't exist yet, so that page stays an honest placeholder. A blog post doesn't require that; it can be genuine educational/opinion content the founders could actually have written, with no invented client story or fabricated number inside it. That's the standard every one of the 7 posts was held to — check `src/lib/blog-data.ts` if you want to audit the claims in any of them.
+- [x] All 7 are attributed to the two real founders (5 to Shafi, 2 to Shoeb, split by actual subject-matter fit — the two security/monitoring posts went to Shoeb given his real role), dated across roughly the last two months up to today, not backdated further to imply a publishing history that doesn't exist.
+- [x] Topics: what "AI agent" actually means, RAG explained plainly, why every engagement starts with an audit, five manual processes worth automating first, security questions before an agent touches your data, why everything shipped gets monitored, and off-the-shelf vs. custom software — all grounded in the same positioning already established elsewhere on the site, nothing new claimed.
+- [x] Sourced 2 new free-to-use, no-people Unsplash photos for the posts that needed them (`blog-security.jpg`, `blog-planning.jpg` — verified "Download free," not Unsplash+, before using either), and reused 5 already-vetted photos already in the project for the rest — no new fabricated "team" or "client" imagery.
+- [x] Added `/blog` and all 7 post URLs to `sitemap.ts`.
+- [x] Verified in-browser: listing grid, an individual post (headings, bullet list, images, cross-links to other posts), footer/nav Blog links, and mobile rendering. `tsc` / `npm run lint` / `npm run build` all clean — all 7 posts show up as statically pre-rendered routes.
 
 ## Not done yet — what's left
 
