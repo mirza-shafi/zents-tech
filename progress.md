@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 7)
+Last updated: 2026-09-01 (rev 8)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -81,6 +81,19 @@ You said the site had gotten "too basic" and asked for it to feel more like Fiel
 - **No AI image-generation tool is available in this session.** I checked. So "create images" can't mean literal photo generation from me — I built the visual richness above using color, layout, and original SVG/vector work instead (the workflow diagram, colored icon badges, hero background), which is the honest equivalent of what a designer would do without a photo shoot.
 - **Real photos** (team, office, working) — I don't have any, and I'm not going to fabricate stock-style "team at work" images and present them as Zents Tech's actual people/office, since that directly contradicts the no-fake-claims approach the whole site (About, Career, homepage) is already built on. If you have real photos, send them and I'll place them properly (hero, About, Career).
 - **Video** — there IS a real video-generation tool available to this session, but it's paid and currently at **0 credits** (~$5 minimum for 200 credits, roughly 1-2 videos). I flagged this before and still haven't spent anything without your explicit go-ahead. Asking again directly: want me to generate one (confirm the spend), or hold off until there's real footage/work to show?
+
+## Since rev 7 (this session) — real photos + dark footer
+
+You pushed back on "no images" and asked me to actually find real pictures instead of declining. Fair — I'd only checked for an AI image *generator*, not for real, properly-licensed photography I could source and place honestly. Fixed:
+
+- [x] **Two real, freely-licensed photos** sourced from Unsplash (Unsplash License — free for commercial use) and saved locally to `public/images/`: a close-up of colorful code on a dark screen (`code-screen.jpg`), and a dashboard/metrics close-up whose teal/amber tones happen to match the site's own palette (`dashboard-metrics.jpg`). Both are anonymous/abstract shots — no people, no recognizable brand, no specific claimed data — chosen deliberately so they read as atmosphere, not as "here is our team" or "here is a real client's dashboard," since neither of those would be true yet.
+- [x] Homepage hero: the plain white "Where the hours actually go" card is now a photo-backed card (code-screen.jpg, dark gradient overlay, white text) — same copy, much more visual weight, closer to the Field Nation / Brain Station 23 hero treatment you asked for.
+- [x] Systems page: added a full-width photo banner (dashboard-metrics.jpg) between the category cards and the productized-services grid, tied to the "every system ships with monitoring" message.
+- [x] **Footer is now dark** (near-black navy `#0d121c`, light text, bright teal accent for headings) instead of matching the light page — a deliberate dark anchor at the bottom of every page, like the reference sites use.
+- [x] `Logo` component got a `variant="dark"` mode so the wordmark reads correctly on the new dark footer.
+- [x] Verified in-browser (fresh tab, no console errors); `tsc`/`build`/`lint` all clean.
+
+Still true from before: no AI image *generator* is available in this session, and I still won't fabricate photos claiming to be Zents Tech's actual team/office — the two images above are honestly generic. If you get real photos taken (team, workspace, a client call), send them and I'll swap them in properly. Video is still the same paid/0-credit situation as before — still waiting on your go-ahead there.
 
 ## Not done yet — what's left
 

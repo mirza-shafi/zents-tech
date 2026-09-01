@@ -136,4 +136,22 @@
       radial-gradient(560px circle at 88% 8%, color-mix(in oklch, var(--primary) 14%, transparent), transparent),
       radial-gradient(480px circle at 12% 92%, color-mix(in oklch, var(--violet) 12%, transparent), transparent);
   }
+  .hero-bg-pan {
+    animation: hero-pan 24s ease-in-out infinite alternate;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-pan {
+      animation: none;
+      transform: scale(1.08);
+    }
+  }
+}
+
+@keyframes hero-pan {
+  from {
+    transform: scale(1.08) translateX(-2.5%);
+  }
+  to {
+    transform: scale(1.08) translateX(2.5%);
+  }
 }

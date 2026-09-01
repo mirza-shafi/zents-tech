@@ -12,16 +12,27 @@ const categoryIcons = { Bot, Workflow, Code2 };
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border bg-hero-glow">
-        <div className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.55] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
+      {/* Hero — full-bleed background photo with a slow left-right drift */}
+      <section className="relative flex min-h-[620px] items-center overflow-hidden border-b border-border md:min-h-[680px]">
+        <Image
+          src="/images/hero-workspace.jpg"
+          alt=""
+          fill
+          priority
+          className="hero-bg-pan object-cover object-[70%_50%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
         <div className="container-page relative grid gap-10 py-20 md:grid-cols-[1.15fr_0.85fr] md:py-28">
           <Reveal>
-            <span className="eyebrow">AI Systems &amp; Business Automation</span>
-            <h1 className="mt-4 text-balance font-display text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
+              AI Systems &amp; Business Automation
+            </span>
+            <h1 className="mt-4 text-balance font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white md:text-5xl">
               Most of your team&rsquo;s day is spent on work a system could do instead.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
               We build the AI agents, automations, and internal software that
               take that work off their plate — wired into the tools you
               already use, and monitored so they keep working after we ship.
@@ -31,23 +42,20 @@ export default function Home() {
                 Get an Automation &amp; AI Readiness Audit
                 <ArrowRight className="size-4" />
               </Button>
-              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/process" />}>
+              <Button
+                size="lg"
+                variant="outline"
+                nativeButton={false}
+                render={<Link href="/process" />}
+                className="border-white/30 bg-white/5 text-white backdrop-blur-sm hover:bg-white/15 hover:text-white"
+              >
                 See how we work
               </Button>
             </div>
           </Reveal>
 
-          <div className="relative self-start overflow-hidden rounded-xl shadow-[0_1px_2px_rgba(18,22,28,0.04),0_16px_40px_-12px_rgba(18,22,28,0.35)]">
-            <Image
-              src="/images/code-screen.jpg"
-              alt=""
-              width={900}
-              height={700}
-              className="absolute inset-0 size-full object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
-            <div className="relative space-y-4 p-6">
+          <div className="relative self-start overflow-hidden rounded-xl border border-white/15 bg-black/35 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
+            <div className="space-y-4 p-6">
               <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#5eead4]">
                 Where the hours actually go
               </div>
