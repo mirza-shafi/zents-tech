@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 26)
+Last updated: 2026-09-01 (rev 27)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -247,6 +247,13 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Moved the FAQ content (`faqs`) into `src/lib/site-data.ts` as a shared source of truth — both the Contact page's FAQ accordion and the chat widget now read from the same array instead of duplicating it.
 - [x] Fixed an unrelated minor warning noticed in the dev server logs while testing this: the homepage's "Join Our Team" photo was missing the `sizes` prop Next.js's Image component wants for a `fill` image.
 - [x] Verified in-browser: opening the widget, clicking a starter question, typing a free-text question, and an off-topic question all behave correctly in fallback mode; confirmed on desktop. `tsc` / `npm run lint` / `npm run build` all clean, `/api/chat` shows up as a registered dynamic route in the build output.
+
+## Since rev 27 (this session) — checkerboard "core capabilities" section
+
+- [x] Added a new homepage section between the founding note and the 3D visual, referenced from a screenshot of a similar checkerboard layout: an eyebrow + heading + "Explore all systems" link, then a 3-column grid alternating text cards (icon, title, description) with real photos.
+- [x] **Used 5 real capabilities, not the reference's 6 generic dev-shop services** — AI Systems, Business Automation, Software Engineering (the same 3 pillars from elsewhere on the site), plus Diagnostics and Monthly Support, both real offerings that existed already in the process lifecycle but had never gotten their own icon+description callout on the homepage before. Nothing here is invented — "Staff Augmentation" and "Managed Services" from the reference aren't services Zents Tech offers, so they're not on this list.
+- [x] **Reused existing photos already in `public/images/`** (`code-screen.jpg`, `dashboard-metrics.jpg`, `about-workspace.jpg`, `join-team-office.jpg`) instead of sourcing new ones — all already vetted as generic/anonymous per the site's photo policy, and reusing them here keeps a consistent visual language across pages rather than introducing a sixth or seventh stock photo.
+- [x] Verified in-browser on desktop (1280px) and mobile (375px) — the checkerboard renders correctly and collapses to a single column on mobile; `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
 
