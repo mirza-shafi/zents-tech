@@ -1,6 +1,6 @@
 # Zents Tech — Website Progress
 
-Last updated: 2026-09-01 (rev 39)
+Last updated: 2026-09-01 (rev 43)
 
 ## Stack
 Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui (Base UI primitives) + lucide-react icons.
@@ -354,6 +354,41 @@ You sent real photos and real links for both founders, which changes the honesty
 - [x] Reused the existing `bg-hero-glow` / `bg-dot-grid` utilities (already used on the Contact page hero) for the background texture instead of adding new ones.
 - [x] Removed the old "Where the hours actually go" dark card from the hero, since the photo collage now occupies that column — that content wasn't load-bearing to the pitch.
 - [x] Verified in-browser on desktop (1280px) and mobile (375px) — both founder photos and both badges render fully, nothing clipped or overlapping badly, at both sizes.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 40 (this session) — swapped the founder photos out of the hero collage
+
+- [x] You didn't want the real founder photos on the homepage after all. Swapped the two collage photos from `shafi-founder.jpg`/`arnob-cofounder.png` to generic, already-used atmospheric photos instead — `hero-workspace.jpg` (the larger bottom photo) and `code-screen.jpg` (the smaller top-right one) — with `alt=""` since they're decorative again, not depicting named people. The honest floating badges ("Founder-led," "Dhaka, BD") stayed as-is.
+- [x] **Caught a real bug while re-testing**: the top-right photo silently failed to load (empty `src`, `complete: false` in the DOM) even though the identical image loaded fine elsewhere on the same page — root cause was default lazy-loading on an image inside an absolutely-positioned, aspect-ratio-driven container, which is above-the-fold content that should never have been lazy in the first place. Fixed by adding `priority` to both collage images, matching how every other page's hero image already does this.
+- [x] Verified via direct DOM inspection (`naturalWidth`, `complete`) after the fix, not just a screenshot, since this exact failure mode doesn't always show up consistently in a screenshot.
+- [x] `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 41 (this session) — renamed "Systems" to "Services" site-wide
+
+- [x] **Flagged a tradeoff first**: the site's whole positioning was built around rejecting the word "services" ("Three systems, not eight services" — a deliberate differentiator from a generic agency menu). Recommended keeping "Systems." You decided to switch to "Services" anyway, so this rewrites that positioning consistently rather than leaving it half-changed.
+- [x] Moved the route: `src/app/systems/` → `src/app/services/` (`/services` and `/services/[slug]` — `/services/ai-systems`, `/services/business-automation`, `/services/software-engineering`; the category slugs themselves didn't need to change, only the parent path).
+- [x] Updated the nav (`site-data.ts`), header (mega-menu trigger + links), footer, homepage, 404 page, and `sitemap.ts` — every internal link and label that pointed at "Systems"/`/systems`.
+- [x] **Reworded the copy that specifically contrasted "systems" against "services"**, since that contrast breaks once the section is itself called Services:
+  - Homepage: "Three systems, not eight services." → "Three services. Not a sprawling menu."
+  - Services page: "Three systems. One diagnostic..." → "Three services. One diagnostic..."; "We don't sell a menu of eight unrelated services" → "We don't spread ourselves across eight unrelated offerings."
+  - Left "AI Systems" (a specific pillar's actual name) and "Systems Architecture Review" (a specific diagnostic offering's name) unchanged — those aren't the renamed nav section, they're product names that happen to contain the word.
+  - Fixed two now-stale mentions of "the Systems page" (Terms of Service, a contact-page FAQ answer) to "the Services page."
+- [x] **Caught and fixed a real bug while in this code**: the header's Services mega-menu was still linking to the old `/systems#slug` hash-anchor pattern (the same stale-link bug already fixed in the footer at rev 36, just never caught here) — now points at the real `/services/slug` detail pages.
+- [x] Verified in-browser: nav renders "Services," the mega-menu and all category links resolve to `/services/...`, and `tsc` / `npm run lint` / `npm run build` all clean with `/services` and `/services/[slug]` showing as the new routes.
+
+## Since rev 42 (this session) — two-row header: utility bar + main nav
+
+- [x] Split the header into two rows: a thin top utility bar (desktop only) with plain, uncolored "Blog" and "Book a Meeting" links, and the existing main row below it (logo, Services/Process mega-menus, remaining nav, the colored "Get an Audit" button) — separated by a subtle border.
+- [x] "Blog" moved out of the main nav row into the utility bar, so it no longer shows twice — the main row's generic nav loop now excludes `/blog` the same way it already excluded `/services` and `/process`.
+- [x] "Book a Meeting" links to `/contact` — no fake calendar-booking widget, same honest destination as the rest of the site's CTAs.
+- [x] The utility bar is desktop-only; on mobile, Blog still appears in the hamburger sheet menu as before, so nothing is lost at that breakpoint.
+- [x] Verified in-browser on desktop (both links resolve correctly, no duplicate "Blog") and mobile (utility bar correctly hidden, Blog still in the sheet menu). `tsc` / `npm run lint` / `npm run build` all clean.
+
+## Since rev 43 (this session) — reverted the two-row header
+
+- [x] You said the previous single-row header was better. Reverted rev 42's top utility bar entirely — removed the "Blog" / "Book a Meeting" strip and restored "Blog" to the main nav row (undid the `/blog` exclusion in the header's generic nav filter).
+- [x] Header is back to exactly the rev 41 state (single row: logo, Services/Process mega-menus, remaining nav, "Get an Audit" button) — the "Systems" → "Services" rename from rev 41 stays, since that wasn't part of what you asked to undo.
+- [x] Verified in-browser on desktop and mobile — single row, no utility bar, "Blog" back in its normal spot in the nav.
 - [x] `tsc` / `npm run lint` / `npm run build` all clean.
 
 ## Not done yet — what's left
