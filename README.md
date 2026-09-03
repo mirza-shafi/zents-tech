@@ -29,6 +29,64 @@ npm run lint    # ESLint
 npx tsc --noEmit  # typecheck
 ```
 
+## Docker
+
+The project is fully containerized using a **multi-stage Dockerfile** for minimal image size.
+
+### How the build works
+
+| Stage | Base | What it does |
+|---|---|---|
+| `deps` | `node:22-alpine` | Installs npm dependencies |
+| `builder` | `node:22-alpine` | Runs `next build` → outputs `.next/standalone` |
+| `runner` | `node:22-alpine` | Copies only the standalone server + static assets |
+
+> `output: "standalone"` in `next.config.ts` tells Next.js to trace and bundle only the files actually needed at runtime — no full `node_modules` in the final image.
+
+### Using Docker Compose (recommended)
+
+```bash
+# Build image and start container
+docker compose up --build
+
+# Run in background (detached)
+docker compose up --build -d
+
+# Stop
+docker compose down
+
+# View logs
+docker compose logs -f app
+
+# Rebuild without cache
+docker compose build --no-cache
+```
+
+### Using Docker directly
+
+```bash
+# Build
+docker build -t zents-tech:latest .
+
+# Run
+docker run -p 3000:3000 zents-tech:latest
+```
+
+App will be available at [http://localhost:3000](http://localhost:3000).
+
+### Environment variables in Docker
+
+Create a `.env.production` file (not committed) and pass it to compose:
+
+```bash
+docker compose --env-file .env.production up -d
+```
+
+| Variable | Required? | Effect |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | No | Enables Claude-powered chat widget. Without it, FAQ fallback is used. |
+| `PORT` | No | Defaults to `3000` |
+
 ## Environment variables
 
 None are required to run the site locally — everything works out of the box.
@@ -36,6 +94,19 @@ None are required to run the site locally — everything works out of the box.
 | Variable | Required? | Effect |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | No | Without it, the chat widget (`/api/chat`) answers from a small set of curated FAQ triggers and is honest when it doesn't know something. With it set, the same route calls Claude (`claude-haiku-4-5-20251001`) with a system prompt grounded in this site's own real content (services, pricing, process). No other code changes needed to switch — just add the key to `.env.local`. |
+
+## Branch strategy
+
+| Branch | Purpose |
+|---|---|
+| `main` | Stable, production-ready code |
+| `production` | Production deployment target |
+| `staging` | Pre-production QA / testing |
+| `dev-shafi` | Mirza Shafi's active development branch |
+| `dev-jabid` | Jabid's active development branch |
+| `dev-ishtiaq` | Ishtiaq's active development branch |
+
+**Workflow:** feature work happens on `dev-*` branches → merge to `staging` for review → merge to `production` for deploy.
 
 ## Project structure
 
@@ -78,4 +149,16 @@ This site deliberately doesn't fabricate trust signals: no invented client names
 
 ## Deployment
 
+### Vercel (primary target)
 Not yet deployed. The natural target is Vercel (Next.js's own platform); see `progress.md`'s "Blocking for launch" section for what's still needed first (domain DNS, real email delivery on the contact form, a real mailbox for `hello@zentstech.com`).
+
+### Docker / Self-hosted
+A fully working Docker setup is included. To deploy on any Linux VPS or cloud VM:
+
+```bash
+git clone <repo>
+cd zents-tech
+docker compose up --build -d
+```
+
+Add a reverse proxy (Nginx / Caddy) in front of port `3000` for HTTPS.
